@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using System.Collections;
 
@@ -32,7 +33,17 @@ public class PlayerInput : MonoBehaviour {
  // Update is called once per frame
     void Update () 
     {
-        if (Input.GetMouseButtonUp (0)) 
+        LookAtMouse();
+
+        LeftClickAction();
+
+        RightClickAction();
+    }
+
+    private void LeftClickAction()
+    {
+//Left Click - Movement
+        if (Input.GetMouseButtonUp(0))
         {
             mouseLocation = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
         }
@@ -42,27 +53,32 @@ public class PlayerInput : MonoBehaviour {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, mouseLocation,
                 2.0f*TimeManager.GetTime(TimeType.Gameplay));
         }
+    }
 
-        if (Input.GetMouseButtonUp(1))
+    private void RightClickAction()
+    {
+        if (Input.GetMouseButtonUp(1) && Type == RobotType.Waterer)
         {
-            Debug.Log("Right Click");
-            switch (Type)
-            {
-                case RobotType.Waterer:
-                    GameObject projectileGameObject = Instantiate(Water, transform.position, Quaternion.identity) as GameObject;
-                    Vector3 mouseLocation2 = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-                    projectileGameObject.rigidbody2D.AddForce((new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized, ForceMode2D.Impulse);
-                    break;
-                case RobotType.Breaker:
-                    //Currently Walks into walls and destroys them. Has X amount of charges
-                    break;
-                case RobotType.Pusher:
-
-                    break;
-                default:
-                    throw new Exception("RobotType not assigned.");
-            }
+            GameObject projectileGameObject = Instantiate(Water, transform.position, Quaternion.identity) as GameObject;
+            Vector3 mouseLocation2 =
+                Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+            projectileGameObject.rigidbody2D.AddForce(
+                (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized,
+                ForceMode2D.Impulse);
         }
+    }
+
+    private void LookAtMouse()
+    {
+        //Always Look towards the mouse.
+        Vector3 mouseLocation = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+
+        //// Get Angle in Radians
+        float AngleRad = Mathf.Atan2(mouseLocation.y - transform.position.y, mouseLocation.x - transform.position.x);
+        // Get Angle in Degrees
+        float AngleDeg = (180/Mathf.PI)*AngleRad;
+        // Rotate Object
+        transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
     }
 
     void OnCollisionEnter2D(Collision2D collider)
@@ -72,12 +88,15 @@ public class PlayerInput : MonoBehaviour {
             Destroy(collider.gameObject);
             DestroyCharge--;
         }
-        Debug.Log(collider.gameObject.tag);
-        if (collider.gameObject.tag == "Props" && DestroyCharge > 0 && Type == RobotType.Pusher)
+
+        if (collider.gameObject.tag == "Props")
         {
-            Destroy(collider.gameObject);
-            DestroyCharge--;
+            if (Type == RobotType.Pusher)
+                collider.gameObject.rigidbody2D.isKinematic = false;
+            else
+                collider.gameObject.rigidbody2D.isKinematic = true;
         }
+
     }
 
 	void Kill() {

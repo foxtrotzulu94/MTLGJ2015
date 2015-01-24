@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Menu : MonoBehaviour {
 
+    public Color BackgroundColor = Color.white;
+
 	// Use this for initialization
 	void Start ()
 	{

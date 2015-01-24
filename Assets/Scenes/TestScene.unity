@@ -134,7 +134,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25, y: 2}
+  m_Size: {x: .0900000036, y: 2}
   m_Center: {x: 0, y: 0}
 --- !u!1001 &82333257
 Prefab:
@@ -284,7 +284,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25, y: 2}
+  m_Size: {x: .0900000036, y: 2}
   m_Center: {x: 0, y: 0}
 --- !u!1 &204022628
 GameObject:
@@ -346,7 +346,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25000006, y: 2.00000048}
+  m_Size: {x: .0900000036, y: 2.00000048}
   m_Center: {x: 0, y: 1.1920929e-07}
 --- !u!1001 &224624740
 Prefab:
@@ -452,7 +452,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25000006, y: 2.00000048}
+  m_Size: {x: .0989999995, y: 2.00000048}
   m_Center: {x: 0, y: 5.96046448e-08}
 --- !u!1 &308051583
 GameObject:
@@ -616,7 +616,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25, y: 2}
+  m_Size: {x: .0900000036, y: 2}
   m_Center: {x: 0, y: 0}
 --- !u!1 &638794487
 GameObject:
@@ -801,7 +801,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25000006, y: 2.00000048}
+  m_Size: {x: .0900000036, y: 2.00000048}
   m_Center: {x: 0, y: 1.1920929e-07}
 --- !u!1 &840832658
 GameObject:
@@ -1138,6 +1138,7 @@ GameObject:
   - 4: {fileID: 1203480843}
   - 212: {fileID: 1203480842}
   - 61: {fileID: 1203480844}
+  - 50: {fileID: 1203480845}
   m_Layer: 0
   m_Name: TreeLog
   m_TagString: Props
@@ -1164,7 +1165,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2b9cc066870344a4e87c526db63a4efc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1203480843
@@ -1187,9 +1188,24 @@ BoxCollider2D:
   m_GameObject: {fileID: 1203480841}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: .569999933, y: .529999971}
   m_Center: {x: 0, y: 0}
+--- !u!50 &1203480845
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1203480841}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1 &1214834728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,7 +1266,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25000006, y: 2.00000048}
+  m_Size: {x: .0900000036, y: 2.00000048}
   m_Center: {x: -1.1920929e-07, y: 0}
 --- !u!1 &1282178826
 GameObject:
@@ -1414,7 +1430,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25000006, y: 2.00000048}
+  m_Size: {x: .0900000036, y: 2.00000048}
   m_Center: {x: -1.49011612e-08, y: 0}
 --- !u!1 &1453901271
 GameObject:
@@ -1505,7 +1521,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25, y: 2}
+  m_Size: {x: .0900000036, y: 2}
   m_Center: {x: 0, y: 0}
 --- !u!212 &1484217614
 SpriteRenderer:
@@ -1717,7 +1733,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25000006, y: 2.00000048}
+  m_Size: {x: .0900000036, y: 2.00000048}
   m_Center: {x: 1.1920929e-07, y: 5.96046448e-08}
 --- !u!1001 &1593220219
 Prefab:
@@ -1845,7 +1861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f26c0e6c9773c449b26e5f0803bc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  Type: 0
   Water: {fileID: 189494, guid: 02db740ad165e5d4190e02973e771e2c, type: 2}
   DestroyCharge: 3
 --- !u!212 &1650606680
@@ -1867,7 +1883,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a4540e0dde72ee94e951bdcf7e6a7562, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1650606681
@@ -1946,7 +1962,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25, y: 2}
+  m_Size: {x: .0900000036, y: 2}
   m_Center: {x: 0, y: 0}
 --- !u!212 &1677189045
 SpriteRenderer:
@@ -2030,7 +2046,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25000006, y: 2.00000048}
+  m_Size: {x: .0900000036, y: 2.00000048}
   m_Center: {x: 0, y: 5.96046448e-08}
 --- !u!1001 &1763566383
 Prefab:
@@ -2187,7 +2203,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .25, y: 2}
+  m_Size: {x: .0900000036, y: 2}
   m_Center: {x: 0, y: 0}
 --- !u!1001 &1853721596
 Prefab:
