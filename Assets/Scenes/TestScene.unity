@@ -1785,6 +1785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   Water: {fileID: 189494, guid: 02db740ad165e5d4190e02973e771e2c, type: 2}
+  DestroyCharge: 3
 --- !u!212 &1650606680
 SpriteRenderer:
   m_ObjectHideFlags: 0
