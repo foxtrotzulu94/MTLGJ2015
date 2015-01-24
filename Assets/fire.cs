@@ -13,7 +13,7 @@ public class fire : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		fireSpawnTimer = fireSpawnRate;
-		initialFirePositionRight = this.transform.position;
+		initialFirePositionRight = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -27,6 +27,12 @@ public class fire : MonoBehaviour {
 			fireSpawnTimer = fireSpawnRate;
 			fireCreated++;
 			totalFire++;
+		}
 	}
-}
+
+	void OnTriggerEnter2D(Collider2D collider) {
+		if (collider.gameObject.tag == "Player") {
+			collider.gameObject.SendMessage ("Kill");
+		}
+	}
 }

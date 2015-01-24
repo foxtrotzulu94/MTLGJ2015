@@ -25,4 +25,18 @@ public class PlayerInput : MonoBehaviour {
 
  
     }
+
+	void Kill() {
+		transform.position = new Vector3 (1.678f, -1.231f, 0);
+		renderer.enabled = false;
+		Respawn ();
+
+	}
+
+	void Respawn() {
+		float newTime = Time.time + 0.1f;
+		Debug.Log ("NewTime: " + newTime);
+		if (Time.time >= newTime)
+			renderer.enabled = true;
+	}
 }
