@@ -13,10 +13,13 @@ public class Respawn : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
-	{
-	    lifeTime -= Time.deltaTime;
-	    if (lifeTime <= 0)
-	        player.renderer.enabled = true;
-	}
+    private void Update()
+    {
+        lifeTime -= Time.deltaTime;
+        if (lifeTime <= 0)
+        {
+            player.SendMessage("Revived");
+            Destroy(this);
+        }
+    }
 }

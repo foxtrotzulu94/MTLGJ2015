@@ -38,4 +38,11 @@ public class PlayerInput : MonoBehaviour {
 	{
 	    gameObject.AddComponent("Respawn");
 	}
+
+    void Revived()
+    {
+        mouseLocation = transform.position;
+        renderer.enabled = true;
+        alive = true;
+    }
 }
