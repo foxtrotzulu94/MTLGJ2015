@@ -5,6 +5,7 @@ public class LevelGenerator : MonoBehaviour {
 
     public GameObject FloorPrefab;
     public GameObject WallPreFab;
+    public GameObject Player0;
     public GameObject[] Decorations;
 
     public int SmallestRoomSize;
@@ -117,7 +118,7 @@ public class LevelGenerator : MonoBehaviour {
 
         //Before we begin, evaluate certain decisions ahead of time.
         //1. Do we want to really, really split this room?
-        if(currentLevel >= maxLevels*(2/3) && Mathf.Min(xLength,yLength) < SmallestRoomSize*2)
+        if(currentLevel >= 0 && currentLevel >= maxLevels*(2/3) && Mathf.Min(xLength,yLength) < SmallestRoomSize*2)
         {
             if (Random.Range(0, 100) > 90) //10% Chance that this Room will not be split.
             {
@@ -158,6 +159,7 @@ public class LevelGenerator : MonoBehaviour {
             //We keep x1 the same, x2 will change, however
             //newMiddle = (int)((x2-x1) * (Random.Range(0.3,0.8));
             newMiddle = Mathf.FloorToInt((x2 - x1) / 2);
+			newMiddle += Mathf.FloorToInt(Random.Range(-newMiddle/2,newMiddle/2));
             int midPoint = x2 - newMiddle;
             //newMiddle = (int)(Random.Range(MinMapTiles*2, x2 - (MinMapTiles*2)));
             BinarySpacePartition(basePosition, x1, y1, midPoint, y2, maxLevels, currentLevel + 1);
@@ -183,6 +185,7 @@ public class LevelGenerator : MonoBehaviour {
             //Debug.log("Y-Axis halve");
             //newMiddle = (int)(y2 / ((Random.value % 2) + 1));
             newMiddle = (y2 - y1) / 2;
+			newMiddle += Mathf.FloorToInt(Random.Range(-newMiddle / 2, newMiddle / 2));
             int midPoint = y2 - newMiddle;
             //newMiddle = (int)(Random.Range(MinMapTiles*2, y2 - (MinMapTiles*2)));
             BinarySpacePartition(basePosition, x1, y1, x2, midPoint, maxLevels, currentLevel + 1);
