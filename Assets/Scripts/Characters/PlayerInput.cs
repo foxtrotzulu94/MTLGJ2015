@@ -54,7 +54,7 @@ public class PlayerInput : MonoBehaviour {
                     projectileGameObject.rigidbody2D.AddForce((new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized, ForceMode2D.Impulse);
                     break;
                 case RobotType.Breaker:
-                    //Currently Walks into wall and destroys
+                    //Currently Walks into walls and destroys them. Has X amount of charges
                     break;
                 case RobotType.Pusher:
 
@@ -67,7 +67,13 @@ public class PlayerInput : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Wall" && DestroyCharge > 0)
+        if (collider.gameObject.tag == "Wall" && DestroyCharge > 0 && Type == RobotType.Breaker)
+        {
+            Destroy(collider.gameObject);
+            DestroyCharge--;
+        }
+        Debug.Log(collider.gameObject.tag);
+        if (collider.gameObject.tag == "Props" && DestroyCharge > 0 && Type == RobotType.Pusher)
         {
             Destroy(collider.gameObject);
             DestroyCharge--;
