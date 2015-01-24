@@ -6,3 +6,9 @@ Temp
 *.unityproj
 *.sln
 *.userprefs
+/obj/Debug/Assembly-CSharp.dll
+/ggj2015-csharp.v11.suo
+/obj/Debug/Assembly-CSharp-vs.csproj.FileListAbsolute.txt
+/obj/Debug/Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+/obj/Debug/Assembly-CSharp.pdb
+/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
