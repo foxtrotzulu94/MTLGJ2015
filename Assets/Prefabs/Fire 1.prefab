@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 480900}
   - 114: {fileID: 11480900}
   - 212: {fileID: 21280900}
+  - 58: {fileID: 5811674}
   m_Layer: 0
   m_Name: Fire 1
   m_TagString: Untagged
@@ -29,6 +30,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!58 &5811674
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180900}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Radius: .129999995
+  m_Center: {x: 0, y: 0}
 --- !u!114 &11480900
 MonoBehaviour:
   m_ObjectHideFlags: 1
