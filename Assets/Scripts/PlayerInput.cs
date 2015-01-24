@@ -21,7 +21,6 @@ public class PlayerInput : MonoBehaviour {
       }
       if (new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y) != mouseLocation)
         this.gameObject.transform.position = Vector3.MoveTowards (this.gameObject.transform.position, mouseLocation, 2.0f * Time.deltaTime);
-        
         //if(ourBounds.)
 
  
