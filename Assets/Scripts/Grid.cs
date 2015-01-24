@@ -42,14 +42,14 @@ public class Grid : MonoBehaviour
         }
 
          // @TEST
-        /*TileCoord fireCoord = new TileCoord(Random.Range(0, Width), Random.Range(0, Height));
+        TileCoord fireCoord = new TileCoord(Random.Range(0, Width), Random.Range(0, Height));
         Tile tile = GetTile(fireCoord);
         Flammable flamabble = tile.gameObject.GetComponent<Flammable>();
         if (flamabble != null)
         {
             flamabble.Ignite();
         }
-        */
+        
     }
 
     public void SetTile(GameObject tileObject, TileCoord coord)
@@ -126,7 +126,7 @@ public class Grid : MonoBehaviour
     }
 
 	//@TEST
-    /*
+    
     float timer = 3.0f;
 	public void Update()
 	{
@@ -150,5 +150,5 @@ public class Grid : MonoBehaviour
             }
 		}
 	}
-     * * */
+
 }

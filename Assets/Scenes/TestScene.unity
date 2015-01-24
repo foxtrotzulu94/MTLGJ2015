@@ -463,6 +463,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 308051584}
   - 212: {fileID: 308051585}
+  - 114: {fileID: 308051586}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -505,6 +506,25 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &308051586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 990004898}
+  m_GameObject: {fileID: 308051583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &412797703
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +534,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 412797704}
   - 212: {fileID: 412797705}
+  - 114: {fileID: 412797706}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -556,6 +577,25 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &412797706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 1853721596}
+  m_GameObject: {fileID: 412797703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &521868195
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +666,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 638794488}
+  - 114: {fileID: 638794489}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -657,6 +698,25 @@ Transform:
   - {fileID: 840832659}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &638794489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 1593220219}
+  m_GameObject: {fileID: 638794487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &790794960
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +872,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 840832659}
   - 212: {fileID: 840832660}
+  - 114: {fileID: 840832661}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -854,6 +915,25 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &840832661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 82333257}
+  m_GameObject: {fileID: 840832658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &941096062
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +1027,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1067156145}
   - 212: {fileID: 1067156146}
+  - 114: {fileID: 1067156147}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -989,6 +1070,73 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1067156147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 1197733831}
+  m_GameObject: {fileID: 1067156144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
+--- !u!1001 &1090900523
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.67999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.23000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+  m_RootGameObject: {fileID: 1650606678}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1001 &1096904863
 Prefab:
   m_ObjectHideFlags: 0
@@ -1042,6 +1190,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1114063225}
   - 212: {fileID: 1114063226}
+  - 114: {fileID: 1114063227}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -1084,6 +1233,25 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1114063227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 224624740}
+  m_GameObject: {fileID: 1114063224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1001 &1197733831
 Prefab:
   m_ObjectHideFlags: 0
@@ -1277,6 +1445,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1282178827}
   - 212: {fileID: 1282178828}
+  - 114: {fileID: 1282178829}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -1319,6 +1488,25 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1282178829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 1496416130}
+  m_GameObject: {fileID: 1282178826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &1289549924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,6 +1516,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1289549926}
   - 212: {fileID: 1289549925}
+  - 114: {fileID: 1289549927}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -1370,6 +1559,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 638794488}
   m_RootOrder: 0
+--- !u!114 &1289549927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 116626861}
+  m_GameObject: {fileID: 1289549924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &1303407538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,6 +1649,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1453901272}
   - 212: {fileID: 1453901273}
+  - 114: {fileID: 1453901274}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -1483,6 +1692,25 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1453901274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 2139899081}
+  m_GameObject: {fileID: 1453901271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &1484217611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,6 +2017,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1619929840}
   - 212: {fileID: 1619929841}
+  - 114: {fileID: 1619929842}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -1831,11 +2060,30 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1619929842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 1096904863}
+  m_GameObject: {fileID: 1619929839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &1650606678
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+  m_PrefabInternal: {fileID: 1090900523}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1650606681}
@@ -1853,8 +2101,9 @@ GameObject:
 --- !u!114 &1650606679
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11400000, guid: 11c6edcb176e7c3478e258462965dff0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1090900523}
   m_GameObject: {fileID: 1650606678}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1867,8 +2116,9 @@ MonoBehaviour:
 --- !u!212 &1650606680
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 21200000, guid: 11c6edcb176e7c3478e258462965dff0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1090900523}
   m_GameObject: {fileID: 1650606678}
   m_Enabled: 1
   m_CastShadows: 0
@@ -1889,8 +2139,8 @@ SpriteRenderer:
 --- !u!4 &1650606681
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+  m_PrefabInternal: {fileID: 1090900523}
   m_GameObject: {fileID: 1650606678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.67999995, y: -1.23000002, z: 0}
@@ -1901,8 +2151,9 @@ Transform:
 --- !u!61 &1650606682
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 6100000, guid: 11c6edcb176e7c3478e258462965dff0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1090900523}
   m_GameObject: {fileID: 1650606678}
   m_Enabled: 1
   m_Material: {fileID: 0}
@@ -1912,8 +2163,9 @@ BoxCollider2D:
 --- !u!50 &1650606683
 Rigidbody2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 5000000, guid: 11c6edcb176e7c3478e258462965dff0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1090900523}
   m_GameObject: {fileID: 1650606678}
   m_Mass: 1
   m_LinearDrag: 0
@@ -2101,6 +2353,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1834807826}
   - 212: {fileID: 1834807827}
+  - 114: {fileID: 1834807828}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -2143,6 +2396,25 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1834807828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 1763566383}
+  m_GameObject: {fileID: 1834807825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &1842549057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,6 +2574,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2107377855}
   - 212: {fileID: 2107377856}
+  - 114: {fileID: 2107377857}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -2344,6 +2617,25 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &2107377857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 1978432888}
+  m_GameObject: {fileID: 2107377854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1 &2110395408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,6 +2645,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2110395409}
   - 212: {fileID: 2110395410}
+  - 114: {fileID: 2110395411}
   m_Layer: 0
   m_Name: FloorPiece
   m_TagString: Untagged
@@ -2395,6 +2688,25 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6bcf86f41b989ae4daaa0bc2dbdad7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &2110395411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ea31d96490fa9db409a7bd108d37d582,
+    type: 2}
+  m_PrefabInternal: {fileID: 1557581430}
+  m_GameObject: {fileID: 2110395408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
+  m_State: 0
 --- !u!1001 &2139899081
 Prefab:
   m_ObjectHideFlags: 0
