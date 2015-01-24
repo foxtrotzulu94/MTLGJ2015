@@ -28,4 +28,6 @@ public class Wall : MonoBehaviour
     {
         return (A == a && B == b) || (A == b && B == a);
     }
+
+    
 }

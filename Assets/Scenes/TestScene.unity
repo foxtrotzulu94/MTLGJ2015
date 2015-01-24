@@ -86,7 +86,7 @@ GameObject:
   - 61: {fileID: 11354003}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -236,7 +236,7 @@ GameObject:
   - 61: {fileID: 196736905}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: OutsideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -298,7 +298,7 @@ GameObject:
   - 61: {fileID: 204022631}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -404,7 +404,7 @@ GameObject:
   - 61: {fileID: 272470055}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -568,7 +568,7 @@ GameObject:
   - 61: {fileID: 521868198}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: OutsideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -753,7 +753,7 @@ GameObject:
   - 61: {fileID: 837837083}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: OutsideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1140,7 +1140,7 @@ GameObject:
   - 61: {fileID: 1214834731}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: OutsideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1304,7 +1304,7 @@ GameObject:
   - 61: {fileID: 1303407541}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1417,7 +1417,7 @@ GameObject:
   - 61: {fileID: 1484217613}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: OutsideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1607,7 +1607,7 @@ GameObject:
   - 61: {fileID: 1558904490}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: OutsideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1783,6 +1783,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f26c0e6c9773c449b26e5f0803bc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 2
+  Water: {fileID: 189494, guid: 02db740ad165e5d4190e02973e771e2c, type: 2}
 --- !u!212 &1650606680
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1855,7 +1857,7 @@ GameObject:
   - 61: {fileID: 1677189044}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: OutsideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1917,7 +1919,7 @@ GameObject:
   - 61: {fileID: 1704053969}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: OutsideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2074,7 +2076,7 @@ GameObject:
   - 61: {fileID: 1842549060}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
