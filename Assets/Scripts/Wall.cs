@@ -28,4 +28,10 @@ public class Wall : MonoBehaviour
     {
         return (A == a && B == b) || (A == b && B == a);
     }
+
+	public void OnDestroy()
+	{
+		A.RemoveWall (this);
+		B.RemoveWall (this);
+	}
 }

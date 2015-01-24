@@ -105,6 +105,7 @@ MonoBehaviour:
   Width: 10
   Height: 10
   TilePrefab: {fileID: 100000, guid: 872938f572d871b49bd263f53f1ccf2d, type: 2}
+  WallPrefab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
 --- !u!4 &851623533
 Transform:
   m_ObjectHideFlags: 0
@@ -240,6 +241,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
+      propertyPath: WallPrefab
+      value: 
+      objectReference: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
   m_RootGameObject: {fileID: 851623531}

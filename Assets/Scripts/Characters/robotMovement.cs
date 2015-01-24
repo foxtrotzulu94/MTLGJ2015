@@ -18,7 +18,7 @@ public class robotMovement : MonoBehaviour {
 			mouseLocation = camera.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 		}
 		if (new Vector2(player.transform.position.x, player.transform.position.y) != mouseLocation)
-			player.transform.position = Vector3.MoveTowards (player.transform.position, mouseLocation, 20.0f * Time.deltaTime);
+            player.transform.position = Vector3.MoveTowards(player.transform.position, mouseLocation, 20.0f * TimeManager.GetTime(TimeType.Gameplay));
 
 
 	

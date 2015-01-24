@@ -110,6 +110,11 @@ public class Tile : MonoBehaviour
         return m_ParentGrid.GetTile(neighboorCoord); ;
     }
 
+    public List<WallInstance> GetAdjacentWalls()
+    {
+        return m_Walls;
+    }
+
     public List<Tile> GetConnectedNeighboors()
     {
         List<Tile> neighbors = GetNeighboors();

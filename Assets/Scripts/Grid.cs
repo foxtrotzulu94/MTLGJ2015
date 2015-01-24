@@ -8,6 +8,7 @@ public class Grid : MonoBehaviour
     public int Height = 10;
 
     public GameObject TilePrefab;
+    public GameObject WallPrefab;
 
     private Grid _instance;
     public Grid Instance 
@@ -19,7 +20,6 @@ public class Grid : MonoBehaviour
     }
 
     private List<List<Tile>> m_Tiles = new List<List<Tile>>();
-    private List<Wall> m_Walls = new List<Wall>();
 
     public void Awake()
     {
@@ -83,16 +83,24 @@ public class Grid : MonoBehaviour
 
             if (neighbor != null)
             {
-                GameObject wall = (GameObject)GameObject.Instantiate(TilePrefab);
-                wall.transform.position = Vector3.one * 10000.0f;
-                AddWall(tile, neighbor, wall);
+                if (tile.GetConnectedNeighboors().Contains(neighbor))
+                {
+                    GameObject wall = (GameObject)GameObject.Instantiate(WallPrefab);
+                    wall.transform.position = (tile.transform.position + neighbor.transform.position) * 0.5f;
+                    wall.transform.parent = transform;
+                    if (randomDir == Direction.Up || randomDir == Direction.Down)
+                    {
+                        wall.transform.Rotate(Vector3.forward, 90.0f);
+                    }
+                    AddWall(tile, neighbor, wall);
+                }
             }
             else
             {
                 ++i;
             }
         }*/
-	}
+    }
 
     public Tile GetTile(int x, int y)
     {
@@ -150,8 +158,6 @@ public class Grid : MonoBehaviour
         }
         wall.Initialize(A, B);
 
-        m_Walls.Add(wall);
-
         wall.Apply();
     }
 
@@ -160,22 +166,28 @@ public class Grid : MonoBehaviour
         AddWall(GetTile(A), GetTile(B), gameObject);
     }
 
-    public void RemoveWall(TileCoord A, TileCoord B)
-    {
-        RemoveWall(GetTile(A), GetTile(B));
-    }
+	//@TEST
+    /*float timer = 3.0f;
+	public void Update()
+	{
+        timer -= TimeManager.GetTime(TimeType.Gameplay);
+		if(timer <= 0.0f)
+		{
+			BroadcastMessage("SpecialActionRegistrationEvent");
+            SpecialEventManager.Instance.ExecuteSpecialAction(1);
+            timer = 3.0f;
+		}
 
-    public void RemoveWall(Tile A, Tile B)
-    {
-        for (int i = 0; i < m_Walls.Count; ++i)
-        {
-            if (m_Walls[i].IsBetween(A, B))
+		if(Input.GetKeyUp(KeyCode.Space))
+		{
+            if (TimeManager.GetTimeDilatation(TimeType.Gameplay) <= 0.0f)
             {
-                m_Walls[i].Delete();
-                m_Walls.RemoveAt(i);
-
-                return;
+                TimeManager.SetTimeDilatation(TimeType.Gameplay, 1.0f);
             }
-        }
-    }
+            else
+            {
+                TimeManager.SetTimeDilatation(TimeType.Gameplay, 0.0f);
+            }
+		}
+	}*/
 }

@@ -15,7 +15,7 @@ public class Respawn : MonoBehaviour {
 	// Update is called once per frame
     private void Update()
     {
-        lifeTime -= Time.deltaTime;
+        lifeTime -= TimeManager.GetTime(TimeType.Gameplay);
         if (lifeTime <= 0)
         {
             player.SendMessage("Revived");

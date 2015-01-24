@@ -42,7 +42,9 @@ MonoBehaviour:
   FlameResistance: 100
   FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
   WaitForEventSyncToIgnite: 0
-  HeatSpreadingRange: {x: 0, y: 33}
+  CanSpreadFire: 1
+  IsDestroyedOnIgnition: 0
+  HeatSpreadingRange: {x: 50, y: 50}
   m_State: 0
 --- !u!1001 &100100000
 Prefab:

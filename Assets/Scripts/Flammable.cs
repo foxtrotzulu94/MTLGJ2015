@@ -9,6 +9,7 @@ public enum FlammableState
 	NotOnFire,
 	OnFire,
 	SuperOnFire,
+	WaitingForDestruction,
 }
 
 public class Flammable : MonoBehaviour
@@ -16,6 +17,8 @@ public class Flammable : MonoBehaviour
 	public float FlameResistance = 100.0f;
 	public GameObject FireObject = null;
     public bool WaitForEventSyncToIgnite = false;
+	public bool CanSpreadFire = true;
+    public bool IsDestroyedOnIgnition = false;
 
     public Vector2 HeatSpreadingRange = new Vector2(0.0f, 10.0f);
 
@@ -35,19 +38,60 @@ public class Flammable : MonoBehaviour
 
 	public void Update()
 	{
-		if (m_State != FlammableState.NotOnFire)
-        {
-            List<Tile> neighbors = m_Tile.GetConnectedNeighboors();
-            for (int i = 0; i < neighbors.Count; ++i)
-            {
-                Flammable f = neighbors[i].GetComponent<Flammable>();
-                if (f != null)
+		if(CanSpreadFire)
+		{
+			if (m_State != FlammableState.NotOnFire)
+	        {
+                if (m_Tile != null)
                 {
-                    f.ReceiveHeat(UnityEngine.Random.Range(HeatSpreadingRange.x, HeatSpreadingRange.y) * Time.deltaTime);
+                    List<Tile> neighbors = m_Tile.GetConnectedNeighboors();
+                    for (int i = 0; i < neighbors.Count; ++i)
+                    {
+                        Flammable f = neighbors[i].GetComponent<Flammable>();
+                        if (f != null)
+                        {
+                            f.ReceiveHeat(UnityEngine.Random.Range(HeatSpreadingRange.x, HeatSpreadingRange.y) * TimeManager.GetTime(TimeType.Gameplay));
+                        }
+                    }
+
+                    List<WallInstance> walls = m_Tile.GetAdjacentWalls();
+                    for (int i = 0; i < walls.Count; ++i)
+                    {
+                        Flammable f = walls[i].m_Wall.GetComponent<Flammable>();
+                        if (f != null)
+                        {
+                            f.ReceiveHeat(UnityEngine.Random.Range(HeatSpreadingRange.x, HeatSpreadingRange.y) * TimeManager.GetTime(TimeType.Gameplay));
+                        }
+                    }
                 }
-            }
+			}
 		}
 	}
+
+	public void SpecialActionRegistrationEvent()
+	{
+        if(m_State == FlammableState.WaitingForDestruction)
+		{
+            Ignite();
+		}
+        else
+        {
+		    if (FlameResistance <= 0.0f && WaitForEventSyncToIgnite)
+		    {
+			    SpecialEventManager.Instance.Register(gameObject);
+		    }
+        }
+	}
+
+    public void SpecialAction()
+    {
+       	m_State = FlammableState.WaitingForDestruction;
+		SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+		if(renderer != null)
+		{
+			renderer.color = Color.red;
+		}
+    }
 
     public void ReceiveHeat(float heatAmount)
     {
@@ -62,16 +106,24 @@ public class Flammable : MonoBehaviour
     public void Ignite()
     {
         FlameResistance = 0.0f;
-        if (m_State == FlammableState.NotOnFire)
+
+        if (!IsDestroyedOnIgnition)
         {
-            m_State = FlammableState.OnFire;
-            GameObject fireObject = (GameObject)GameObject.Instantiate(FireObject);
+            if (m_State == FlammableState.NotOnFire)
+            {
+                m_State = FlammableState.OnFire;
+                GameObject fireObject = (GameObject)GameObject.Instantiate(FireObject);
 
-            fireObject.transform.position = transform.position;
-            fireObject.transform.parent = transform;
-            fire fireComp = GameObjectUtility.GetOrAddComponent<fire>(fireObject);
+                fireObject.transform.position = transform.position + new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f), 0.0f) * 0.1f;
+                fireObject.transform.parent = transform;
+                fire fireComp = GameObjectUtility.GetOrAddComponent<fire>(fireObject);
 
-            fireComp.Initialize(this);
+                fireComp.Initialize(this);
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
