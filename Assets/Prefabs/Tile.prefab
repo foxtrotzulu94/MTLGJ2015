@@ -8,6 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -27,6 +28,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0c41e197c34154984f03445caf74a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlameResistance: 100
+  FireObject: {fileID: 180900, guid: a05193ed2b23eda4f98b4bf58008443e, type: 2}
+  WaitForEventSyncToIgnite: 0
+  HeatSpreadingRange: {x: 0, y: 33}
+  m_State: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

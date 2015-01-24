@@ -41,7 +41,7 @@ public class Tile : MonoBehaviour
 
         if (drawWallsColor)
         {
-            if (HasAWall(Direction.Up))
+            if (HasAWall(Direction.Up) || GetNeighboor(Direction.Up) == null)
             {
                 Gizmos.color = Color.black;
             }
@@ -50,11 +50,12 @@ public class Tile : MonoBehaviour
                 Gizmos.color = wallColor;
             }
         }
-        Gizmos.DrawLine(TL, TR);
+        if (!drawWallsColor || Gizmos.color != wallColor)
+            Gizmos.DrawLine(TL, TR);
 
         if (drawWallsColor)
         {
-            if (HasAWall(Direction.Right))
+            if (HasAWall(Direction.Right) || GetNeighboor(Direction.Right) == null)
             {
                 Gizmos.color = Color.black;
             }
@@ -63,11 +64,12 @@ public class Tile : MonoBehaviour
                 Gizmos.color = wallColor;
             }
         }
-        Gizmos.DrawLine(TR, BR);
+        if (!drawWallsColor || Gizmos.color != wallColor)
+            Gizmos.DrawLine(TR, BR);
 
         if (drawWallsColor)
         {
-            if (HasAWall(Direction.Down))
+            if (HasAWall(Direction.Down) || GetNeighboor(Direction.Down) == null)
             {
                 Gizmos.color = Color.black;
             }
@@ -76,11 +78,12 @@ public class Tile : MonoBehaviour
                 Gizmos.color = wallColor;
             }
         }
-        Gizmos.DrawLine(BR, BL);
+        if (!drawWallsColor || Gizmos.color != wallColor)
+            Gizmos.DrawLine(BR, BL);
 
         if (drawWallsColor)
         {
-            if (HasAWall(Direction.Left))
+            if (HasAWall(Direction.Left) || GetNeighboor(Direction.Left) == null)
             {
                 Gizmos.color = Color.black;
             }
@@ -89,7 +92,38 @@ public class Tile : MonoBehaviour
                 Gizmos.color = wallColor;
             }
         }
-        Gizmos.DrawLine(BL, TL);
+
+        if (!drawWallsColor || Gizmos.color != wallColor)
+            Gizmos.DrawLine(BL, TL);
+        
+    }
+
+    public List<Tile> GetNeighboors()
+    {
+        return m_ParentGrid.GetNeighboors(this);
+    }
+
+    public Tile GetNeighboor(Direction dir)
+    {
+        TileCoord neighboorCoord = m_Coord.GetAdjacentCoord(dir);
+
+        return m_ParentGrid.GetTile(neighboorCoord); ;
+    }
+
+    public List<Tile> GetConnectedNeighboors()
+    {
+        List<Tile> neighbors = GetNeighboors();
+        for(int i = 0; i < neighbors.Count; ++i)
+        {
+            Tile t = neighbors[i];
+            Direction directionTo = GetDirectionTo(t);
+            if (HasAWall(directionTo))
+            {
+                neighbors.RemoveAt(i--);
+            }
+        }
+
+        return neighbors;
     }
 
     public void OnDrawGizmos()
@@ -101,14 +135,10 @@ public class Tile : MonoBehaviour
     {
         GizmosDrawWalls(0.9f, false, Color.red);
 
-        List<Tile> neighbors = m_ParentGrid.GetNeighboors(this);
+        List<Tile> neighbors = GetConnectedNeighboors();
         foreach(Tile t in neighbors)
         {
-            Direction directionTo = GetDirectionTo(t);
-            if (!HasAWall(directionTo))
-            {
-                t.GizmosDrawWalls(0.9f, false, Color.yellow);
-            }
+            t.GizmosDrawWalls(0.9f, false, Color.yellow);
         }
     }
 
@@ -180,6 +210,31 @@ public class TileCoord
     public new string ToString()
     {
         return "(" + X + ", " + Y + ")";
+    }
+
+    public TileCoord GetAdjacentCoord(Direction dir)
+    {
+        TileCoord coord = new TileCoord(X, Y);
+
+        switch (dir)
+        {
+            case Direction.Down:
+                coord.Y -= 1;
+                break;
+            case Direction.Up:
+                coord.Y += 1;
+                break;
+            case Direction.Left:
+                coord.X -= 1;
+                break;
+            case Direction.Right:
+                coord.X += 1;
+                break;
+            default:
+                break;
+        }
+
+        return coord;
     }
 }
 

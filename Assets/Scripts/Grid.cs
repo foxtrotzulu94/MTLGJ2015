@@ -63,11 +63,45 @@ public class Grid : MonoBehaviour
                 m_Tiles[i][j] = tileComponent;
             }
         }
+
+        // @TEST
+        /*TileCoord fireCoord = new TileCoord(Random.Range(0, Width), Random.Range(0, Height));
+        Tile tile = GetTile(fireCoord);
+        Flammable flamabble = tile.gameObject.GetComponent<Flammable>();
+        if (flamabble != null)
+        {
+            flamabble.Ignite();
+        }
+
+        for (int i = 0; i < 150; ++i)
+        {
+            fireCoord = new TileCoord(Random.Range(0, Width), Random.Range(0, Height));
+            Direction randomDir = (Direction)Random.Range(0, 4);
+            tile = GetTile(fireCoord);
+
+            Tile neighbor = tile.GetNeighboor(randomDir);
+
+            if (neighbor != null)
+            {
+                GameObject wall = (GameObject)GameObject.Instantiate(TilePrefab);
+                wall.transform.position = Vector3.one * 10000.0f;
+                AddWall(tile, neighbor, wall);
+            }
+            else
+            {
+                ++i;
+            }
+        }*/
 	}
 
     public Tile GetTile(int x, int y)
     {
-        return m_Tiles[x][y];
+        if (x >= 0 && x < Width && y >= 0 && y < Height)
+        {
+            return m_Tiles[x][y];
+        }
+
+        return null;
     }
 
     public Tile GetTile(TileCoord coord)
