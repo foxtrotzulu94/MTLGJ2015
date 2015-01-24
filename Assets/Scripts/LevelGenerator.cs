@@ -8,8 +8,6 @@ public class LevelGenerator : MonoBehaviour {
     public GameObject[] Decorations;
 
     public int SmallestRoomSize;
-    public int bottom;
-    public int MaxMapTiles;
 
     private GameObject[] CornerTiles;
 
@@ -35,7 +33,6 @@ public class LevelGenerator : MonoBehaviour {
 
         Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)MapSizeX / 2.0f + Vector3.down * (float)MapSizeY / 2.0f + new Vector3(0.5f, 0.5f);
 
-        GameObject floorGroup = new GameObject();
         GameObject tempFloorTile;
         for (int j = 0; j < MapSizeY; j++ )
         {
