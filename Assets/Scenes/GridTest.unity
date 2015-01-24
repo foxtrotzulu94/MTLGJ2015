@@ -133,8 +133,8 @@ MonoBehaviour:
   FloorPrefab: {fileID: 164324, guid: ea31d96490fa9db409a7bd108d37d582, type: 2}
   WallPreFab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
   Decorations: []
-  SmallestRoomSize: 5
-  MinMapTiles: 10
+  SmallestRoomSize: 3
+  bottom: 0
   MaxMapTiles: 50
 --- !u!1 &892847642
 GameObject:
@@ -263,6 +263,10 @@ Prefab:
       propertyPath: WallPrefab
       value: 
       objectReference: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
+    - target: {fileID: 11400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
+      propertyPath: Width
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
   m_RootGameObject: {fileID: 851623531}

@@ -114,7 +114,7 @@ public class Flammable : MonoBehaviour
                 m_State = FlammableState.OnFire;
                 GameObject fireObject = (GameObject)GameObject.Instantiate(FireObject);
 
-                fireObject.transform.position = transform.position + new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f), 0.0f) * 0.1f;
+                fireObject.transform.position = transform.position + new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f), -0.1f) * 0.1f;
                 fireObject.transform.parent = transform;
                 fire fireComp = GameObjectUtility.GetOrAddComponent<fire>(fireObject);
 

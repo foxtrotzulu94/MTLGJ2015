@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class Grid : MonoBehaviour
 {
-    private int Width = 10;
-    private int Height = 10;
+    public int Width = 10;
+    public int Height = 10;
 
     public GameObject TilePrefab;
     public GameObject WallPrefab;
@@ -26,83 +26,42 @@ public class Grid : MonoBehaviour
         _instance = this;
     }
 
-	// Use this for initialization
-	public void Initialize(int width, int height)
+    public void Start()
     {
-        Width = width;
-        Height = height;
-
-        for (int j = 0; j < height; ++j)
+        for (int j = 0; j < Width; ++j)
         {
             m_Tiles.Add(new List<Tile>());
 
-            for (int i = 0; i < width; ++i)
+            for (int i = 0; i < Height; ++i)
             {
                 m_Tiles[m_Tiles.Count - 1].Add(null);
             }
         }
 
-        /*Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)width / 2.0f + Vector3.down * (float)height / 2.0f;
-
-        for (int j = 0; j < height; ++j)
+        LevelGenerator lg = GetComponent<LevelGenerator>();
+        if(lg != null)
         {
-            m_Tiles.Add(new List<Tile>());
+            lg.GenerateLevel(Width, Height);
+        }
 
-            for (int i = 0; i < width; ++i)
-            {
-                GameObject newTile = (GameObject)GameObject.Instantiate(TilePrefab);
-                newTile.transform.parent = gameObject.transform;
-
-                Tile tileComponent = newTile.GetComponent<Tile>();
-                if (tileComponent == null)
-                {
-                    tileComponent = newTile.AddComponent<Tile>();
-                }
-
-                tileComponent.Initialize(this, new TileCoord(i, j));
-
-                newTile.transform.position = basePosition + new Vector3(i, j, 0);
-
-                m_Tiles[i][j] = tileComponent;
-            }
-        }*/
-
-        // @TEST
-        /*TileCoord fireCoord = new TileCoord(Random.Range(0, Width), Random.Range(0, Height));
+         // @TEST
+        TileCoord fireCoord = new TileCoord(Random.Range(0, Width), Random.Range(0, Height));
         Tile tile = GetTile(fireCoord);
         Flammable flamabble = tile.gameObject.GetComponent<Flammable>();
         if (flamabble != null)
         {
             flamabble.Ignite();
         }
+        
+    }
 
-        for (int i = 0; i < 150; ++i)
-        {
-            fireCoord = new TileCoord(Random.Range(0, Width), Random.Range(0, Height));
-            Direction randomDir = (Direction)Random.Range(0, 4);
-            tile = GetTile(fireCoord);
+    public void SetTile(GameObject tileObject, TileCoord coord)
+    {
+        Tile tileComponent = GameObjectUtility.GetOrAddComponent<Tile>(tileObject);
+		tileComponent.Initialize(this, coord);
 
-            Tile neighbor = tile.GetNeighboor(randomDir);
-
-            if (neighbor != null)
-            {
-                if (tile.GetConnectedNeighboors().Contains(neighbor))
-                {
-                    GameObject wall = (GameObject)GameObject.Instantiate(WallPrefab);
-                    wall.transform.position = (tile.transform.position + neighbor.transform.position) * 0.5f;
-                    wall.transform.parent = transform;
-                    if (randomDir == Direction.Up || randomDir == Direction.Down)
-                    {
-                        wall.transform.Rotate(Vector3.forward, 90.0f);
-                    }
-                    AddWall(tile, neighbor, wall);
-                }
-            }
-            else
-            {
-                ++i;
-            }
-        }*/
+        m_Tiles[coord.X][coord.Y] = tileComponent;
+        tileObject.transform.parent = transform;
     }
 
     public Tile GetTile(int x, int y)
@@ -170,7 +129,7 @@ public class Grid : MonoBehaviour
     }
 
 	//@TEST
-    /*float timer = 3.0f;
+    float timer = 3.0f;
 	public void Update()
 	{
         timer -= TimeManager.GetTime(TimeType.Gameplay);
@@ -192,5 +151,5 @@ public class Grid : MonoBehaviour
                 TimeManager.SetTimeDilatation(TimeType.Gameplay, 0.0f);
             }
 		}
-	}*/
+	}
 }
