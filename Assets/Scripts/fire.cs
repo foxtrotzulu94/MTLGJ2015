@@ -23,5 +23,9 @@ public class fire : MonoBehaviour {
 		if (collider.gameObject.tag == "Player") {
 			collider.gameObject.SendMessage ("Kill");
 		}
+	    if (collider.gameObject.tag == "Water")
+	    {
+	        Destroy(gameObject);
+	    }
 	}
 }
