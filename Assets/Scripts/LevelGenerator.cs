@@ -24,8 +24,17 @@ public class LevelGenerator : MonoBehaviour {
         //Probably shouldn't take only 1 component, right?
         float startingBounds = floorSprite.bounds.size.x; //For now, we'll assume our sprites are squares.
         //HACK: We always want to get even numbered tiles to avoid rounding errors. Not enough time (or sleep) to do good math.
-        float MapSizeX = (2* (Random.Range(MinMapTiles, MaxMapTiles)/2))+1;
-        float MapSizeY = (2* (Random.Range(MinMapTiles, MaxMapTiles)/2))+1;
+        int MapSizeX = (2* (Random.Range(MinMapTiles, MaxMapTiles)/2))+1;
+        int MapSizeY = (2* (Random.Range(MinMapTiles, MaxMapTiles)/2))+1;
+
+        Grid grid = GetComponent<Grid>();
+        if (grid != null)
+        {
+            grid.Initialize(MapSizeX, MapSizeY);
+        }
+
+
+        Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)MapSizeX / 2.0f + Vector3.down * (float)MapSizeY / 2.0f;
 
         GameObject floorGroup = new GameObject();
         Object tempFloorTile;
@@ -35,33 +44,33 @@ public class LevelGenerator : MonoBehaviour {
             {
                 origin.x = i;
                 origin.y = j;
-                tempFloorTile = GameObject.Instantiate(FloorPrefab, origin, Quaternion.identity);
+                tempFloorTile = GameObject.Instantiate(FloorPrefab, origin + basePosition, Quaternion.identity);
             }
         }
 
         //Figure out your 4 corners before placing walls
-        Vector3 top = new Vector3(MapSizeX/2 -0.5f, MapSizeY - 0.5f); 
-        Vector3 bottom = new Vector3(MapSizeX / 2 - 0.5f, -0.5f); // Will want to add another sort of wall with Incorporated door
+        Vector3 top = new Vector3(MapSizeX/2, MapSizeY - 0.5f); 
+        Vector3 bottom = new Vector3(MapSizeX / 2, -0.5f); // Will want to add another sort of wall with Incorporated door
 
         Vector3 topLeft = new Vector3(origin.x - floorSprite.bounds.extents.x - MapSizeX + 1, origin.y + floorSprite.bounds.extents.y -1); //TopRight Corner
         
-        Vector3 left = new Vector3( -0.5f,MapSizeY/2 -0.5f);
-        Vector3 right = new Vector3(MapSizeX -0.5f, MapSizeY/2 -0.5f);
+        Vector3 left = new Vector3( - 0.5f,MapSizeY/2, 0.0f);
+        Vector3 right = new Vector3(MapSizeX - 0.5f, MapSizeY/2);
 
 
         //Put all the outer walls
-        GameObject top1 = (GameObject) GameObject.Instantiate(WallPreFab, top, Quaternion.AngleAxis(90,Vector3.forward));
+        GameObject top1 = (GameObject)GameObject.Instantiate(WallPreFab, top + basePosition, Quaternion.AngleAxis(90, Vector3.forward));
         top1.transform.localScale = new Vector3(1, MapSizeX * startingBounds, 1);
-        GameObject bottom1 = (GameObject) GameObject.Instantiate(WallPreFab, bottom, Quaternion.AngleAxis(90, Vector3.forward));
+        GameObject bottom1 = (GameObject)GameObject.Instantiate(WallPreFab, bottom + basePosition, Quaternion.AngleAxis(90, Vector3.forward));
         bottom1.transform.localScale = new Vector3(1, MapSizeX * startingBounds, 1);
 
-        GameObject left1 = (GameObject)GameObject.Instantiate(WallPreFab, left, Quaternion.identity);
+        GameObject left1 = (GameObject)GameObject.Instantiate(WallPreFab, left + basePosition, Quaternion.identity);
         left1.transform.localScale = new Vector3(1, MapSizeY * startingBounds, 1);
-        GameObject right1 = (GameObject)GameObject.Instantiate(WallPreFab, right, Quaternion.identity);
+        GameObject right1 = (GameObject)GameObject.Instantiate(WallPreFab, right + basePosition, Quaternion.identity);
         right1.transform.localScale = new Vector3(1, MapSizeY * startingBounds, 1);
 
         //Now, go into BSP
-        BinarySpacePartition(0, 0, (int)MapSizeX, (int)MapSizeY, 4, 0);
+        BinarySpacePartition(basePosition, 0, 0, (int)MapSizeX, (int)MapSizeY, 4, 0);
 	}
 	
 	// Update is called once per frame
@@ -76,7 +85,7 @@ public class LevelGenerator : MonoBehaviour {
     /// x1y1 corresponds to lower-left corner of rectangle
     /// x2y2 corresponds to upper-right
     /// </summary> 
-    private void BinarySpacePartition(int x1, int y1, int x2, int y2, int maxLevels, int currentLevel)
+    private void BinarySpacePartition(Vector3 basePosition, int x1, int y1, int x2, int y2, int maxLevels, int currentLevel)
     {
         //TODO: FIX POSITION
             //Rooms are generated very eratically, becomes difficult to work with.
@@ -87,7 +96,7 @@ public class LevelGenerator : MonoBehaviour {
             return;
         }
         //Choose: side=<50 => X OR side=>50 => Y
-        int axis = Random.RandomRange(0,100); // 50/50 chance, right?
+        int axis = Random.Range(0,100); // 50/50 chance, right?
         int xLength = Mathf.Abs(x1 - x2);
         int yLength = Mathf.Abs(y1 - y2);
 
@@ -139,14 +148,14 @@ public class LevelGenerator : MonoBehaviour {
             newMiddle = Mathf.FloorToInt((x2 - x1) / 2);
             int midPoint = x2 - newMiddle;
             //newMiddle = (int)(Random.Range(MinMapTiles*2, x2 - (MinMapTiles*2)));
-            BinarySpacePartition(x1, y1, midPoint, y2, maxLevels,currentLevel+1);
-            BinarySpacePartition(midPoint, y1, x2, y2, maxLevels, currentLevel+1);
+            BinarySpacePartition(basePosition, x1, y1, midPoint, y2, maxLevels, currentLevel + 1);
+            BinarySpacePartition(basePosition, midPoint, y1, x2, y2, maxLevels, currentLevel + 1);
             GameObject unitWall;
             GameObject parentWall = new GameObject();
             //Build ALL of the Walls as you return from callstack
             for (int i = 0; i < yLength; i++)
             {
-                unitWall = (GameObject)GameObject.Instantiate(WallPreFab, new Vector3(midPoint -0.5f, y2 - i - 1)
+                unitWall = (GameObject)GameObject.Instantiate(WallPreFab, new Vector3(midPoint - 0.5f, y2 - i - 1) + basePosition
                     , Quaternion.identity);
                 unitWall.name = string.Format("{0}/{1}", i + 1, yLength);
                 unitWall.transform.parent = parentWall.transform;
@@ -161,15 +170,15 @@ public class LevelGenerator : MonoBehaviour {
             newMiddle = (y2 - y1) / 2;
             int midPoint = y2 - newMiddle;
             //newMiddle = (int)(Random.Range(MinMapTiles*2, y2 - (MinMapTiles*2)));
-            BinarySpacePartition(x1, y1, x2, midPoint, maxLevels, currentLevel + 1);
-            BinarySpacePartition(x1, midPoint, x2, y2, maxLevels, currentLevel + 1);
+            BinarySpacePartition(basePosition, x1, y1, x2, midPoint, maxLevels, currentLevel + 1);
+            BinarySpacePartition(basePosition, x1, midPoint, x2, y2, maxLevels, currentLevel + 1);
             GameObject unitWall;
             GameObject parentWall = new GameObject();
             //Build ALL of the Walls as you return from callstack
             //TODO: Have a random point for peek hole
             for (int i = 0; i < xLength; i++)
             {
-                unitWall = (GameObject)GameObject.Instantiate(WallPreFab, new Vector3(x2 - i -1, midPoint - 0.5f)
+                unitWall = (GameObject)GameObject.Instantiate(WallPreFab, new Vector3(x2 - i - 1, midPoint - 0.5f) + basePosition
                     , Quaternion.AngleAxis(90, Vector3.forward));
                 unitWall.transform.parent = parentWall.transform;
             }

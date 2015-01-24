@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class Grid : MonoBehaviour
 {
-    public int Width = 10;
-    public int Height = 10;
+    private int Width = 10;
+    private int Height = 10;
 
     public GameObject TilePrefab;
     public GameObject WallPrefab;
@@ -27,25 +27,28 @@ public class Grid : MonoBehaviour
     }
 
 	// Use this for initialization
-	void Start ()
+	public void Initialize(int width, int height)
     {
-        for (int j = 0; j < Height; ++j)
+        Width = width;
+        Height = height;
+
+        for (int j = 0; j < height; ++j)
         {
             m_Tiles.Add(new List<Tile>());
 
-            for (int i = 0; i < Width; ++i)
+            for (int i = 0; i < width; ++i)
             {
                 m_Tiles[m_Tiles.Count - 1].Add(null);
             }
         }
 
-        Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)Width / 2.0f + Vector3.down * (float)Height / 2.0f;
+        /*Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)width / 2.0f + Vector3.down * (float)height / 2.0f;
 
-        for (int j = 0; j < Height; ++j)
+        for (int j = 0; j < height; ++j)
         {
             m_Tiles.Add(new List<Tile>());
 
-            for (int i = 0; i < Width; ++i)
+            for (int i = 0; i < width; ++i)
             {
                 GameObject newTile = (GameObject)GameObject.Instantiate(TilePrefab);
                 newTile.transform.parent = gameObject.transform;
@@ -62,7 +65,7 @@ public class Grid : MonoBehaviour
 
                 m_Tiles[i][j] = tileComponent;
             }
-        }
+        }*/
 
         // @TEST
         /*TileCoord fireCoord = new TileCoord(Random.Range(0, Width), Random.Range(0, Height));
