@@ -78,13 +78,12 @@ NavMeshSettings:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
-  m_PrefabInternal: {fileID: 1298186568}
+  m_PrefabInternal: {fileID: 1936096705}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 851623533}
   - 114: {fileID: 851623532}
   - 114: {fileID: 851623535}
-  - 114: {fileID: 851623534}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -97,7 +96,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: b496b618e2a1bfb478c1f9fcca86f86f,
     type: 2}
-  m_PrefabInternal: {fileID: 1298186568}
+  m_PrefabInternal: {fileID: 1936096705}
   m_GameObject: {fileID: 851623531}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -112,7 +111,7 @@ MonoBehaviour:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
-  m_PrefabInternal: {fileID: 1298186568}
+  m_PrefabInternal: {fileID: 1936096705}
   m_GameObject: {fileID: 851623531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -120,30 +119,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &851623534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 851623531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0420472df7b2bc34584433f49cdbbe13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FloorPrefab: {fileID: 164324, guid: ea31d96490fa9db409a7bd108d37d582, type: 2}
-  WallPreFab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
-  Player0: {fileID: 0}
-  Decorations: []
-  SmallestRoomSize: 3
-  DoorOpening: 0
-  GameObjectSpawners: []
 --- !u!114 &851623535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400002, guid: b496b618e2a1bfb478c1f9fcca86f86f,
     type: 2}
-  m_PrefabInternal: {fileID: 1298186568}
+  m_PrefabInternal: {fileID: 1936096705}
   m_GameObject: {fileID: 851623531}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -154,7 +135,10 @@ MonoBehaviour:
   WallPreFab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
   Player0: {fileID: 0}
   Decorations: []
-  SmallestRoomSize: 3
+  NumberOfSubdivision: 4
+  DepthWhereSubdivisionAreOptional: 3
+  PercentOfOptionalSplitHappening: 60
+  SmallestRoomSize: 2
   DoorOpening: 1
   GameObjectSpawners:
   - {fileID: 11400000, guid: 891f3f8aeb7899b4ab6b549a9baaaa0f, type: 2}
@@ -239,12 +223,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 892847642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.5, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1001 &1298186568
+--- !u!1001 &1936096705
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -282,14 +266,6 @@ Prefab:
     - target: {fileID: 400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
-      propertyPath: WallPrefab
-      value: 
-      objectReference: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
-    - target: {fileID: 11400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
-      propertyPath: Width
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}

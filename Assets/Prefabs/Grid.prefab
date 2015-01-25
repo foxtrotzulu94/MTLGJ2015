@@ -59,7 +59,10 @@ MonoBehaviour:
   WallPreFab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
   Player0: {fileID: 0}
   Decorations: []
-  SmallestRoomSize: 3
+  NumberOfSubdivision: 4
+  DepthWhereSubdivisionAreOptional: 3
+  PercentOfOptionalSplitHappening: 60
+  SmallestRoomSize: 2
   DoorOpening: 1
   GameObjectSpawners:
   - {fileID: 11400000, guid: 891f3f8aeb7899b4ab6b549a9baaaa0f, type: 2}

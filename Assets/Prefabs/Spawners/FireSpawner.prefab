@@ -39,10 +39,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce473e5c5bc8a0a478ba7363129d3a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinFireSpot: 2
-  MaxFireSpot: 7
+  MinFireSpot: 1
+  MaxFireSpot: 1
   MinFlamePerSpot: 1
-  MaxFlamePerSpot: 3
+  MaxFlamePerSpot: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -8,6 +8,11 @@ public class LevelGenerator : MonoBehaviour {
     public GameObject Player0;
     public GameObject[] Decorations;
 
+    public int NumberOfSubdivision = 4;
+    public int DepthWhereSubdivisionAreOptional = 3;
+
+    public int PercentOfOptionalSplitHappening = 90;
+
     public int SmallestRoomSize;
     public int DoorOpening;
 
@@ -19,13 +24,13 @@ public class LevelGenerator : MonoBehaviour {
 	public void GenerateLevel(int width, int height) 
     {
         Random.seed=System.DateTime.UtcNow.Millisecond;
-        //CornerTiles = new GameObject[4];
+
 	    //Make a Large Room and begin dividing it up
         SpriteRenderer floorSprite = FloorPrefab.GetComponent<SpriteRenderer>();
         Vector3 origin = new Vector3(0,0,0);
         //Probably shouldn't take only 1 component, right?
         float startingBounds = floorSprite.bounds.size.x; //For now, we'll assume our sprites are squares.
-        //HACK: We always want to get even numbered tiles to avoid rounding errors. Not enough time (or sleep) to do good math.
+
         int MapSizeX = width;
         int MapSizeY = height;
 
@@ -79,7 +84,7 @@ public class LevelGenerator : MonoBehaviour {
         right1.transform.parent = transform;
 
         //Now, go into BSP
-        BinarySpacePartition(basePosition, 0, 0, (int)MapSizeX, (int)MapSizeY, 4, 0);
+        BinarySpacePartition(basePosition, 0, 0, (int)MapSizeX, (int)MapSizeY, NumberOfSubdivision, 0);
 
         for (int i = 0; i < GameObjectSpawners.Length; ++i)
         {
@@ -102,10 +107,10 @@ public class LevelGenerator : MonoBehaviour {
     /// </summary> 
     private void BinarySpacePartition(Vector3 basePosition, int x1, int y1, int x2, int y2, int maxLevels, int currentLevel)
     {
-        //TODO: FIX POSITION
-            //Rooms are generated very eratically, becomes difficult to work with.
-        //Debug.Log(string.Format("x1: {0} x2: {1} y1: {2} y2: {3} Levels: {4}", x1, x2, y1, y2, maxLevels, currentLevel));
-        if(currentLevel == maxLevels)
+		int xLength = Mathf.Abs(x1 - x2);
+		int yLength = Mathf.Abs(y1 - y2);
+
+		if(currentLevel == maxLevels)
         {
             //Debug.LogWarning("Level Generation Complete due to Max Recursion");
             return;
@@ -119,17 +124,15 @@ public class LevelGenerator : MonoBehaviour {
 
         //Choose: side=<50 => X OR side=>50 => Y
         int axis = Random.Range(0,100); // 50/50 chance, right?
-        int xLength = Mathf.Abs(x1 - x2);
-        int yLength = Mathf.Abs(y1 - y2);
 
         int newMiddle = 0;
         //Debug.log("side:" + axis);
 
         //Before we begin, evaluate certain decisions ahead of time.
         //1. Do we want to really, really split this room?
-        if(currentLevel >= 0 && currentLevel >= maxLevels*(2/3) && Mathf.Min(xLength,yLength) < SmallestRoomSize*2)
+		if (currentLevel >= 0 && currentLevel >= DepthWhereSubdivisionAreOptional && Mathf.Min(xLength, yLength) < SmallestRoomSize * 2)
         {
-            if (Random.Range(0, 100) > 90) //10% Chance that this Room will not be split.
+            if (Random.Range(0, 100) > PercentOfOptionalSplitHappening) //PercentOfOptionalSplitHappening% Chance that this Room will not be split.
             {
                 //Debug.logWarning("Level Generation Complete due to Random Decision");
                 return;
@@ -137,9 +140,9 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         //2. Do we want to change our split side decision?
-        if (xLength <= (SmallestRoomSize * 2))
+        if (xLength < (SmallestRoomSize * 2))
         {
-            if (yLength > SmallestRoomSize * 2)
+            if (yLength >= SmallestRoomSize * 2)
             {
                 axis = 100; //Force a choice on the Y Axis
             }
@@ -148,9 +151,9 @@ public class LevelGenerator : MonoBehaviour {
                 return;
             }
         }
-        if (yLength <= (SmallestRoomSize * 2))
+        if (yLength < (SmallestRoomSize * 2))
         {
-            if (xLength > SmallestRoomSize * 2)
+            if (xLength >= SmallestRoomSize * 2)
             {
                 axis = 0; //Force a choice on the X axis
             }
@@ -166,11 +169,12 @@ public class LevelGenerator : MonoBehaviour {
         {
             //Debug.log("X-Axis halve");
             //We keep x1 the same, x2 will change, however
-            //newMiddle = (int)((x2-x1) * (Random.Range(0.3,0.8));
-            newMiddle = Mathf.FloorToInt((x2 - x1) / 2);
-			newMiddle += Mathf.FloorToInt(Random.Range(-newMiddle/2,newMiddle/2));
+            
+			int range = (x2 - x1);
+			int rangeWithMin = range - (SmallestRoomSize * 2);
+			newMiddle = SmallestRoomSize + Random.Range(0, rangeWithMin + 1);
             int midPoint = x2 - newMiddle;
-            //newMiddle = (int)(Random.Range(MinMapTiles*2, x2 - (MinMapTiles*2)));
+            
             BinarySpacePartition(basePosition, x1, y1, midPoint, y2, maxLevels, currentLevel + 1);
             BinarySpacePartition(basePosition, midPoint, y1, x2, y2, maxLevels, currentLevel + 1);
             GameObject unitWall;
@@ -202,11 +206,12 @@ public class LevelGenerator : MonoBehaviour {
         else if (axis >= 50) //We "Chose" Y-Axis
         {
             //Debug.log("Y-Axis halve");
-            //newMiddle = (int)(y2 / ((Random.value % 2) + 1));
-            newMiddle = (y2 - y1) / 2;
-			newMiddle += Mathf.FloorToInt(Random.Range(-newMiddle / 2, newMiddle / 2));
-            int midPoint = y2 - newMiddle;
-            //newMiddle = (int)(Random.Range(MinMapTiles*2, y2 - (MinMapTiles*2)));
+            
+			int range = (y2 - y1);
+			int rangeWithMin = range - (SmallestRoomSize * 2);
+			newMiddle = Random.Range(0, rangeWithMin + 1);
+			int midPoint = y2 - SmallestRoomSize - newMiddle;
+
             BinarySpacePartition(basePosition, x1, y1, x2, midPoint, maxLevels, currentLevel + 1);
             BinarySpacePartition(basePosition, x1, midPoint, x2, y2, maxLevels, currentLevel + 1);
             GameObject unitWall;
@@ -234,12 +239,5 @@ public class LevelGenerator : MonoBehaviour {
                 grid.AddWall(coord, otherCoord, unitWall);
             }
         }
-
-        
-
-
-        //If we are returning from other methods, create the walls
-
-        //Finish by 
     }
 }
