@@ -4,7 +4,8 @@ using System.Collections;
 public class score : MonoBehaviour {
 
 	int totalScore;
-    public int WallMultiplier;
+    public int WallMultiplier = 2;
+    public int CivilianMultiplier = 5;
 	public TextMesh text;
 
 	// Use this for initialization
@@ -25,5 +26,16 @@ public class score : MonoBehaviour {
     {
         int remainingWalls = GameObject.FindObjectsOfType<Flammable>().Length;
         Increment(WallMultiplier * remainingWalls);
+    }
+
+    public void CountRescuedCivilians()
+    {
+        RobotInput[] allRobots = (RobotInput[])Object.FindObjectsOfType<RobotInput>();
+        int totalCount=0;
+        for (int i = 0; i < allRobots.Length; i++)
+        {
+            totalCount+=allRobots[i].civiliansRescued;
+        }
+        Increment(CivilianMultiplier * totalCount);
     }
 }

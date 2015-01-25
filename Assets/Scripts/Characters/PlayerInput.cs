@@ -1,7 +1,10 @@
 ﻿using System;
-using UnityEditor;
 using UnityEngine;
 using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 
 public class PlayerInput : MonoBehaviour {
     Vector2 mouseLocation;

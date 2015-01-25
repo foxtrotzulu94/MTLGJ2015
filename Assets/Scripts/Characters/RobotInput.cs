@@ -10,6 +10,7 @@ public class RobotInput : MonoBehaviour {
     public RobotType Type;
 	Animator animator;
 	bool facingRight = true;
+    public int civiliansRescued;
     //Water player stuff
     public GameObject Water;
     public float CooldownDuration = 3.0f;
@@ -229,5 +230,10 @@ public class RobotInput : MonoBehaviour {
         this.GetComponent<SpriteRenderer>().enabled=false;
         inLevel = false;
         Main.RegisterSafeRobot(this);
+    }
+
+    public void AddRescuedCivilian(Civilian aCivilian)
+    {
+        civiliansRescued++;
     }
 }

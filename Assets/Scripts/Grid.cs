@@ -7,6 +7,9 @@ public class Grid : MonoBehaviour
     public int Width = 10;
     public int Height = 10;
 
+    public int MaxWidth = 10;
+    public int MaxHeight = 10;
+
     private static Grid _instance;
     public static Grid Instance 
     {
@@ -28,6 +31,9 @@ public class Grid : MonoBehaviour
 
     public void Start()
     {
+        Width = Random.Range(Width, MaxWidth);
+        Height = Random.Range(Height, MaxHeight);
+
         for (int j = 0; j < Width; ++j)
         {
             m_Tiles.Add(new List<Tile>());

@@ -56,10 +56,7 @@ public class PlayerMovement : MonoBehaviour {
         RobotArray = (RobotInput[])Object.FindObjectsOfType<RobotInput>(); //Hopefully these are the ones we want, right?
         Debug.Log(RobotArray);
         Debug.Log("Initializing Player Movement...");
-        foreach (RobotInput a in RobotArray)
-        {
-            Debug.Log(a.name);
-        }
+
         inputNumber = 0;
         RobotArray[inputNumber].BroadcastMessage("ShowSelector");
         RobotArray[inputNumber].isFocus = true;
@@ -135,6 +132,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 Debug.Log("GAME OVER");
                 gameIsOver = true;
+                Application.LoadLevel("GameOver");
                 //Nice GUI thing here
             }
             else if (safeBots == aliveBots && safeBots!=0)

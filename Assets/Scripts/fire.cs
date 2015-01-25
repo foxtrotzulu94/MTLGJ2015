@@ -29,6 +29,11 @@ public class fire : MonoBehaviour
 			score.SendMessage("Increment", 1);
 			Destroy(gameObject);
 	    }
+        if (collider.gameObject.tag == "Civilian")
+        {
+            Debug.LogWarning("Kill the civi NOW");
+            collider.gameObject.SendMessage("Hide", SendMessageOptions.DontRequireReceiver);
+        }
 	}
 
     public void OnDestroy()
