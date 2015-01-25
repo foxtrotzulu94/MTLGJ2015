@@ -43,6 +43,8 @@ MonoBehaviour:
   MaxCivilian: 7
   CivilianPrefab:
   - {fileID: 177680, guid: 0e45d64f410f79346a5fc15163f4c4e4, type: 2}
+  - {fileID: 164380, guid: 3b2d109f22c8e2343ba8d269ae32b2a7, type: 2}
+  - {fileID: 172988, guid: b858429b9b03b0641835584c55fa2b36, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
