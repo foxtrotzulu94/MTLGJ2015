@@ -6,13 +6,28 @@ public class PlayerMovement : MonoBehaviour {
     public float CameraSpeed;
     public float CameraAcceleration;
 
+    private RobotInput[] RobotArray;
+    private RobotInput.RobotType RobotInFocus;
+    private int inputNumber;
+    private int previousInput;
     private Vector2 inputVectors;
     private float xTime;
     private float yTime;
 
 	// Use this for initialization
 	void Start () {
-	    //Nothing to do here, right??
+        //Need to Retrieve Robots from Spawn and not sent out from prefab or we are doomed :/
+        RobotArray = GameObject.FindObjectsOfType<RobotInput>(); //Hopefully these are the ones we want, right?
+        Debug.Log(RobotArray);
+        foreach (RobotInput a in RobotArray)
+        {
+            Debug.Log(a.name);
+        }
+        inputNumber = 0;
+        RobotArray[inputNumber].isFocus=true;
+        RobotInFocus = RobotArray[inputNumber].Type;
+        Debug.Log(RobotInFocus);
+	    //Nothing else to do here, right??
 	}
 	
 	// Update is called once per frame
@@ -22,6 +37,9 @@ public class PlayerMovement : MonoBehaviour {
             Application.LoadLevel("Menu");
         }
 
+        HandleRobots();
+
+        
 
         inputVectors.x = Input.GetAxisRaw("Horizontal") * CameraSpeed * Time.deltaTime;
         inputVectors.y = Input.GetAxisRaw("Vertical") * CameraSpeed * Time.deltaTime;
@@ -40,4 +58,43 @@ public class PlayerMovement : MonoBehaviour {
         transform.Translate(inputVectors.x , inputVectors.y , 0);
         
 	}
+
+
+    private void HandleRobots()
+    {
+        previousInput = inputNumber;
+        //Get The Inputs
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            inputNumber = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            inputNumber = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            inputNumber = 2;
+        }
+
+        if (inputNumber == previousInput)
+        {
+            //Nothing to do here then, right?
+            return;
+        }
+
+        for (int i = 0; i < RobotArray.Length; i++)
+        {
+            if (i == inputNumber)
+            {
+                RobotArray[inputNumber].isFocus = true;
+                RobotInFocus = RobotArray[inputNumber].Type;
+            }
+            else
+            {
+                RobotArray[i].isFocus = false;
+            }
+        }
+    }
+
 }

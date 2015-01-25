@@ -14,11 +14,11 @@ public class RobotInput : MonoBehaviour {
     //Breaker player stuff
     public int DestroyCharge = 3;
 
-    public enum RobotType
+    public enum RobotType : int
     {
-        Waterer,
-        Pusher,
-        Breaker
+        Waterer = 1,
+        Pusher = 2,
+        Breaker = 3
     }
 
     private bool alive;
@@ -70,6 +70,7 @@ public class RobotInput : MonoBehaviour {
             projectileGameObject.rigidbody2D.AddForce(
                 (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized,
                 ForceMode2D.Impulse);
+            projectileGameObject.AddComponent("SquirtTimer");
         }
     }
 
