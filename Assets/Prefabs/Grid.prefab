@@ -57,7 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FloorPrefab: {fileID: 164324, guid: ea31d96490fa9db409a7bd108d37d582, type: 2}
   WallPreFab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
-  Player0: {fileID: 0}
+  OuterWallPreFab: {fileID: 147488, guid: 21feb3be51c5d544b875b5d09d75ec16, type: 2}
   Decorations: []
   NumberOfSubdivision: 4
   DepthWhereSubdivisionAreOptional: 3

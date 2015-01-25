@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Vignetting
+  m_Name: Smoke
   m_Shader: {fileID: 4800000, guid: 025912ae87e245c4d9c89cf75b3ab229, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -17,8 +17,8 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: bee37ce28ecbbfb48ab5a00bcf116fd6, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: 7e3d235e3832b3d48926de2a4403edec, type: 3}
+          m_Scale: {x: 2, y: 2}
           m_Offset: {x: 0, y: 0}
     m_Floats: {}
     m_Colors:

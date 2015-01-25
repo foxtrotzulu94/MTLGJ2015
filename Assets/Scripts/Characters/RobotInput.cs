@@ -12,6 +12,7 @@ public class RobotInput : MonoBehaviour {
 	bool facingRight = true;
     //Water player stuff
     public GameObject Water;
+    public float CooldownDuration = 3.0f;
 
     //Breaker player stuff
     public int DestroyCharge = 3;
@@ -41,6 +42,7 @@ public class RobotInput : MonoBehaviour {
  // Update is called once per frame
     void Update () 
     {
+        Cooldown -= TimeManager.GetTime(TimeType.Gameplay);
         if (isFocus && inLevel && alive)
         {
             //LookAtMouse();
@@ -87,36 +89,42 @@ public class RobotInput : MonoBehaviour {
         }
     }
 
+    float Cooldown = 0.0f;
+
     private void RightClickAction()
     {
-        if ( Input.GetMouseButtonUp(1) )
+        if(Cooldown <= 0.0f)
         {
-            Vector3 mouseLocation2 =
-                    Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-            if (Type == RobotType.Waterer)
+            if (Input.GetMouseButtonUp(1))
             {
-                GameObject projectileGameObject = Instantiate(Water, transform.position, Quaternion.identity) as GameObject;
-                projectileGameObject.rigidbody2D.AddForce(
-                    (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized * 10,
-                    ForceMode2D.Impulse);
-                projectileGameObject.AddComponent("SquirtTimer");
-            }
-            else if (Type == RobotType.Breaker)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x,transform.position.y), 
-                    (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)));
-                    //2.0f);
-                if (hit.collider.gameObject.GetType()==typeof(Wall))
+                Vector3 mouseLocation2 =
+                        Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+                Vector3 dir = (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized;
+
+                if (Type == RobotType.Waterer)
                 {
-                    Destroy(hit.collider.gameObject);
-                    //DestroyCharge--;
+                    GameObject projectileGameObject = Instantiate(Water, transform.position + dir * 0.5f, Quaternion.identity) as GameObject;
+                    SquirtTimer squirt = projectileGameObject.AddComponent<SquirtTimer>();
+                    squirt.direction = dir;
+                    Cooldown = CooldownDuration;
+                }
+                else if (Type == RobotType.Breaker)
+                {
+                    var layerMask = 1 << LayerMask.NameToLayer("Wall");
+                    RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(dir.x, dir.y), 1.0f, layerMask);
+                    if (hit.collider != null)
+                    {
+                        Destroy(hit.collider.gameObject);
+                        //DestroyCharge--;
+						Cooldown = CooldownDuration;
+                    }
+                }
+                else if (Type == RobotType.Pusher)
+                {
+                    //Not sure what goes here/
+                    Cooldown = CooldownDuration;
                 }
             }
-            else if (Type == RobotType.Pusher)
-            {
-                //Not sure what goes here/
-            }
-
         }
     }
 
@@ -135,11 +143,11 @@ public class RobotInput : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Wall"  && Type == RobotType.Breaker)
+        /*if (collider.gameObject.tag == "Wall"  && Type == RobotType.Breaker)
         {
             Destroy(collider.gameObject);
             DestroyCharge--;
-        }
+        }*/
         if (collider.gameObject.tag == "Props")
         {
             if (Type == RobotType.Pusher)

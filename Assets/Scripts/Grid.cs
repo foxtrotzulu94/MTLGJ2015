@@ -183,31 +183,4 @@ public class Grid : MonoBehaviour
 
         return new List<Tile>(connectingTiles);
     }
-
-	//@TEST
-    
-    float timer = 3.0f;
-	public void Update()
-	{
-        timer -= TimeManager.GetTime(TimeType.Gameplay);
-		if(timer <= 0.0f)
-		{
-			BroadcastMessage("SpecialActionRegistrationEvent");
-            SpecialEventManager.Instance.ExecuteSpecialAction(1);
-            timer = 3.0f;
-		}
-
-		if(Input.GetKeyUp(KeyCode.Space))
-		{
-            if (TimeManager.GetTimeDilatation(TimeType.Gameplay) <= 0.0f)
-            {
-                TimeManager.SetTimeDilatation(TimeType.Gameplay, 1.0f);
-            }
-            else
-            {
-                TimeManager.SetTimeDilatation(TimeType.Gameplay, 0.0f);
-            }
-		}
-	}
-
 }
