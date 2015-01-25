@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 using System.Collections.Generic;
 using System;
 
@@ -137,7 +136,7 @@ public class Flammable : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-		Handles.Label(transform.position + Vector3.left * 0.5f, String.Format("{0:0.##}", FlameResistance));
+		//Handles.Label(transform.position + Vector3.left * 0.5f, String.Format("{0:0.##}", FlameResistance));
 
 		if (m_State == FlammableState.OnFire || m_State == FlammableState.SuperOnFire)
         {
