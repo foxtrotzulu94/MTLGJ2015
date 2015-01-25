@@ -8,3 +8,5 @@ Temp
 *.userprefs
 *.v12.suo
 /ggj2015-csharp.v11.suo
+Build/
+MTLGJ2015-csharp.suo
