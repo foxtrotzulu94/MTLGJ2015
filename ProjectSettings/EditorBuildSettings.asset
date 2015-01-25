@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
   - enabled: 1
-    path: Assets/Scenes/GridTest.unity
+    path: Assets/Scenes/TestScene2.unity
   - enabled: 1
+    path: Assets/Scenes/GridTest.unity
+  - enabled: 0
     path: Assets/Scenes/TestScene.unity

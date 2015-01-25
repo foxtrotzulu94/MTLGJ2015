@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
 
     public float CameraSpeed;
     public float CameraAcceleration;
@@ -17,7 +17,10 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Application.LoadLevel("Menu");
+        }
 
 
         inputVectors.x = Input.GetAxisRaw("Horizontal") * CameraSpeed * Time.deltaTime;
