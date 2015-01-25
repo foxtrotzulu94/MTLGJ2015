@@ -7,8 +7,8 @@ public class Grid : MonoBehaviour
     public int Width = 10;
     public int Height = 10;
 
-    private Grid _instance;
-    public Grid Instance 
+    private static Grid _instance;
+    public static Grid Instance 
     {
         get
         {
@@ -123,6 +123,52 @@ public class Grid : MonoBehaviour
     public void AddWall(TileCoord A, TileCoord B, GameObject gameObject)
     {
         AddWall(GetTile(A), GetTile(B), gameObject);
+    }
+
+    public Tile GetTileAtPosition(Vector3 position)
+    {
+        Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)Width / 2.0f + Vector3.down * (float)Height / 2.0f + new Vector3(0.5f, 0.5f, 0.0f);
+
+        Vector3 vectorCoord = position - basePosition;
+        TileCoord coord = new TileCoord(Mathf.RoundToInt(vectorCoord.x), Mathf.RoundToInt(vectorCoord.y));
+
+        return GetTile(coord);
+    }
+
+    public List<Tile> GetConnectedTileInRange(Tile tile, int range)
+    {
+        HashSet<Tile> connectingTiles = new HashSet<Tile>();
+
+		List<Tile> neighbors = new List<Tile>(){tile};
+        List<Tile> newNeighbors = new List<Tile>();
+        connectingTiles.UnionWith(neighbors);
+
+        for (int r = 0; r < range; ++r)
+        {
+            newNeighbors.Clear();
+            while (neighbors.Count > 0)
+            {
+                List<Tile> currentNeighbors = neighbors[0].GetNeighboors();
+                for (int j = 0; j < currentNeighbors.Count; ++j)
+                {
+					if (!connectingTiles.Contains(currentNeighbors[j]) && currentNeighbors[j] != tile)
+                    {
+						if(neighbors[0].IsConnectedTo(currentNeighbors[j]))
+						{
+                            newNeighbors.Add(currentNeighbors[j]);
+                        }
+                    }
+                }
+
+                connectingTiles.UnionWith(newNeighbors);
+                neighbors.RemoveAt(0);
+            }
+
+			neighbors.Clear();
+			neighbors.AddRange(newNeighbors);
+        }
+
+        return new List<Tile>(connectingTiles);
     }
 
 	//@TEST
