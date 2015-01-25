@@ -13,6 +13,7 @@ public class SquirtTimer : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
+        
         lifeTime -= TimeManager.GetTime(TimeType.Gameplay);
         Debug.Log(lifeTime);
         if (lifeTime <= 0)
