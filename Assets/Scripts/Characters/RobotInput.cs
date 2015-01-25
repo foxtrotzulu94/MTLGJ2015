@@ -68,7 +68,7 @@ public class RobotInput : MonoBehaviour {
             Vector3 mouseLocation2 =
                 Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
             projectileGameObject.rigidbody2D.AddForce(
-                (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized,
+                (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized*10,
                 ForceMode2D.Impulse);
             projectileGameObject.AddComponent("SquirtTimer");
         }

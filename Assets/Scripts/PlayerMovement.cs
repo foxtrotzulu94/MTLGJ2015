@@ -17,16 +17,7 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //Need to Retrieve Robots from Spawn and not sent out from prefab or we are doomed :/
-        RobotArray = GameObject.FindObjectsOfType<RobotInput>(); //Hopefully these are the ones we want, right?
-        Debug.Log(RobotArray);
-        foreach (RobotInput a in RobotArray)
-        {
-            Debug.Log(a.name);
-        }
-        inputNumber = 0;
-        RobotArray[inputNumber].isFocus=true;
-        RobotInFocus = RobotArray[inputNumber].Type;
-        Debug.Log(RobotInFocus);
+        RobotArray = new RobotInput[0];
 	    //Nothing else to do here, right??
 	}
 	
@@ -37,10 +28,14 @@ public class PlayerMovement : MonoBehaviour {
             Application.LoadLevel("Menu");
         }
 
-        HandleRobots();
-
-        
-
+        if (RobotArray.Length == 0)
+        {
+            RetrieveRobotControllers();
+        }
+        else
+        {
+            HandleRobots();
+        }
         inputVectors.x = Input.GetAxisRaw("Horizontal") * CameraSpeed * Time.deltaTime;
         inputVectors.y = Input.GetAxisRaw("Vertical") * CameraSpeed * Time.deltaTime;
 
@@ -59,6 +54,20 @@ public class PlayerMovement : MonoBehaviour {
         
 	}
 
+    private void RetrieveRobotControllers()
+    {
+        RobotArray = (RobotInput[])Object.FindObjectsOfType<RobotInput>(); //Hopefully these are the ones we want, right?
+        Debug.Log(RobotArray);
+        Debug.Log("Initializing Player Movement...");
+        foreach (RobotInput a in RobotArray)
+        {
+            Debug.Log(a.name);
+        }
+        inputNumber = 0;
+        RobotArray[inputNumber].isFocus = true;
+        RobotInFocus = RobotArray[inputNumber].Type;
+        Debug.Log(RobotInFocus);
+    }
 
     private void HandleRobots()
     {
