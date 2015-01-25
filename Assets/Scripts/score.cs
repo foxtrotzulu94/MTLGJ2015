@@ -16,9 +16,10 @@ public class score : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		text.text = "Score: " + totalScore;
+        
 	}
 
-	void Increment(int i) {
+	public void Increment(int i) {
 		totalScore += i;
 	}
 
@@ -36,6 +37,6 @@ public class score : MonoBehaviour {
         {
             totalCount+=allRobots[i].civiliansRescued;
         }
-        Increment(CivilianMultiplier * totalCount);
+        Increment(totalCount);
     }
 }

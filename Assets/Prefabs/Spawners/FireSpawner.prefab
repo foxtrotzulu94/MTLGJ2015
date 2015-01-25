@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinFireSpot: 1
-  MaxFireSpot: 1
+  MaxFireSpot: 5
   MinFlamePerSpot: 1
   MaxFlamePerSpot: 1
 --- !u!1001 &100100000

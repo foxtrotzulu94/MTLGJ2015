@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour {
 	    if (Input.anyKey)
 	    {
             Debug.Log(Application.loadedLevelName);
-	        Application.LoadLevel("TestScene2");
+	        Application.LoadLevel("Instructions");
 	    }
 	}
 }

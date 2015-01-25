@@ -222,17 +222,17 @@ public class RobotInput : MonoBehaviour
         //Respawn();
 	}
 
-	void Respawn()
-	{
-	    gameObject.AddComponent("Respawn");
-	}
+    //void Respawn()
+    //{
+    //    gameObject.AddComponent("Respawn");
+    //}
 
-    void Revived()
-    {
-        m_MouseLocation = transform.position;
-        renderer.enabled = true;
-        alive = true;
-    }
+    //void Revived()
+    //{
+    //    mouseLocation = transform.position;
+    //    renderer.enabled = true;
+    //    alive = true;
+    //}
 
 	void Flip()
 	{

@@ -209,6 +209,8 @@ public class Civilian : MonoBehaviour
             //Save the Civi:
                 //Make them disappear, add to the score, Mark for Destroy
             Hide();
+            score someScore = (score) GameObject.FindObjectOfType<score>();
+            someScore.Increment(someScore.CivilianMultiplier);
         }
 
     }

@@ -21,11 +21,13 @@ public class PlayerMovement : MonoBehaviour {
     private bool gameIsOver = false;
     private int aliveBots=0;
     private int safeBots=0;
+    private TextMesh score;
 
 	// Use this for initialization
 	void Start () {
         //Need to Retrieve Robots from Spawn and not sent out from prefab or we are doomed :/
         RobotArray = new RobotInput[0];
+        score = GetComponentInChildren<TextMesh>();
 	    //Nothing else to do here, right??
 	}
 	
@@ -143,6 +145,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 //Load the next level
                 Debug.Log("Load Next Level");
+                safeBots = 0;
                 Application.LoadLevel("TestScene2");
             }
         }
@@ -150,19 +153,12 @@ public class PlayerMovement : MonoBehaviour {
 
     public void RegisterKilledRobot(RobotInput someBot)
     {
-        if (gameHasStarted)
-            aliveBots--;
-        else
-            Debug.LogError("Gameplay received Robot Death before the game had even started!");
+        aliveBots--;
     }
 
     public void RegisterSafeRobot(RobotInput someBot)
     {
-        if (gameHasStarted)
-            safeBots++;
-        else
-            Debug.LogError("A Robot made it to the stairs BEFORE starting the game!");
-
+        safeBots++;
     }
 
     //private void OnGUI()
