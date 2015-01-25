@@ -27,7 +27,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
+    filterMode: 2
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -40,7 +40,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 1024
+  spritePixelsToUnits: 850
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -54,8 +54,8 @@ TextureImporter:
         width: 287
         height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 2, y: 0, z: 1, w: 0}
     - name: FireBots_flameTileAnimated_1
       rect:
         serializedVersion: 2
@@ -64,17 +64,17 @@ TextureImporter:
         width: 288
         height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 1, y: 0, z: 1, w: 0}
     - name: FireBots_flameTileAnimated_2
       rect:
         serializedVersion: 2
         x: 683
         y: 36
-        width: 287
+        width: 286
         height: 288
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 3, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
