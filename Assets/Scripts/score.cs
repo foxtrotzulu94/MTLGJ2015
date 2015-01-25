@@ -3,24 +3,25 @@ using System.Collections;
 
 public class score : MonoBehaviour {
 
-	int totalScore;
     public int WallMultiplier = 2;
     public int CivilianMultiplier = 5;
 	public TextMesh text;
 
 	// Use this for initialization
 	void Start () {
-		totalScore = 0;
+		text.transform.position = new Vector3 (-Camera.main.aspect * Camera.main.orthographicSize + 1.0f, Camera.main.orthographicSize - 1.0f, text.transform.position.z);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		text.text = "Score: " + totalScore;
-        
+	void Update ()
+	{
+		text.text = "Score: " + PlayerContainer.Instance.score;
+
 	}
 
-	public void Increment(int i) {
-		totalScore += i;
+	public void Increment(int i)
+	{
+		PlayerContainer.Instance.score += i;
 	}
 
     public void CountRemainingWalls()

@@ -20,4 +20,5 @@ class PlayerContainer
     public bool InitialSpawning = true;
 
     public int level = 0;
+    public int score = 0;
 }

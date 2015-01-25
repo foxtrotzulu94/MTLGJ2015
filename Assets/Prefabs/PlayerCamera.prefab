@@ -240,7 +240,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1977df0e3b701a4c9b4fb1556c56800, type: 3}
   m_Name: 
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enabled: 1
-  FadingRatio: .100000001
+  FadingRatio: 2
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

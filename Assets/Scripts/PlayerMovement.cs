@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour {
         inputVectors.y = Input.GetAxisRaw("Vertical") * CameraSpeed * TimeManager.GetTime(TimeType.Engine);
 
         //Want to have Max and Min zoom Size for Camera to avoid Aliasing
-        float scrollWheel = Input.GetAxisRaw("Mouse ScrollWheel");
+        float scrollWheel = Input.GetAxisRaw("Mouse ScrollWheel") * CameraSpeed;
         if (scrollWheel > 0)
         {
             Camera.main.orthographicSize -= 1;
@@ -147,6 +147,7 @@ public class PlayerMovement : MonoBehaviour {
                 Debug.Log("Load Next Level");
                 safeBots = 0;
                 Application.LoadLevel("TestScene2");
+                PlayerContainer.Instance.score += 100;
             }
         }
     }
