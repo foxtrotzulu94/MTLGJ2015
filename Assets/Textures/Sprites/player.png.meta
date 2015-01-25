@@ -1,0 +1,278 @@
+fileFormatVersion: 2
+guid: 65e785edb7689534781381c2aee7ee25
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: player_0
+    21300002: player_1
+    21300004: player_2
+    21300006: player_3
+    21300008: player_4
+    21300010: player_5
+    21300012: player_6
+    21300014: player_7
+    21300016: player_8
+    21300018: player_9
+    21300020: player_10
+    21300022: player_11
+    21300024: player_12
+    21300026: player_13
+    21300028: player_14
+    21300030: player_15
+    21300032: player_16
+    21300034: player_17
+    21300036: player_18
+    21300038: player_19
+    21300040: player_20
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: player_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 272
+        width: 61
+        height: 99
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_1
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 268
+        width: 64
+        height: 100
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_2
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 267
+        width: 50
+        height: 106
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_3
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 268
+        width: 50
+        height: 108
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_4
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 270
+        width: 50
+        height: 109
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_5
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 270
+        width: 55
+        height: 106
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_6
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 270
+        width: 58
+        height: 102
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_7
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 138
+        width: 61
+        height: 100
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_8
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 139
+        width: 50
+        height: 104
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_9
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 140
+        width: 51
+        height: 107
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_10
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 139
+        width: 50
+        height: 110
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_11
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 140
+        width: 55
+        height: 104
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_12
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 139
+        width: 50
+        height: 111
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_13
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 138
+        width: 50
+        height: 112
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_14
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 8
+        width: 50
+        height: 113
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_15
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 8
+        width: 50
+        height: 112
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_16
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 8
+        width: 56
+        height: 114
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_17
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 8
+        width: 78
+        height: 113
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_18
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 8
+        width: 51
+        height: 112
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_19
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 8
+        width: 54
+        height: 112
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: player_20
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 8
+        width: 54
+        height: 112
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

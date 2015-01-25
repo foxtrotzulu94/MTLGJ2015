@@ -13,7 +13,8 @@ GameObject:
   - 50: {fileID: 5076278}
   - 212: {fileID: 21276278}
   - 95: {fileID: 9531094}
-  m_Layer: 0
+  - 114: {fileID: 11400000}
+  m_Layer: 8
   m_Name: BreakerPlayer 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -88,6 +89,17 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6360614502f2e104e93037f31c9d598e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11476278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,6 +114,7 @@ MonoBehaviour:
   isFocus: 0
   Type: 3
   Water: {fileID: 0}
+  CooldownDuration: 3
   DestroyCharge: 3
 --- !u!212 &21276278
 SpriteRenderer:

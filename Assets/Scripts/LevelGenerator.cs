@@ -5,7 +5,7 @@ public class LevelGenerator : MonoBehaviour {
 
     public GameObject FloorPrefab;
     public GameObject WallPreFab;
-    public GameObject Player0;
+    public GameObject OuterWallPreFab;
     public GameObject[] Decorations;
 
     public int NumberOfSubdivision = 4;
@@ -55,33 +55,37 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         //Figure out your 4 corners before placing walls
-        Vector3 top = new Vector3(transform.position.x, basePosition.y + MapSizeY - 0.5f);
-        Vector3 bottom = new Vector3(transform.position.x, basePosition.y - 0.5f); // Will want to add another sort of wall with Incorporated door
+        Vector3 top = new Vector3(transform.position.x, basePosition.y + MapSizeY - 0.25f);
+        Vector3 bottom = new Vector3(transform.position.x, basePosition.y - 0.75f); // Will want to add another sort of wall with Incorporated door
 
-        Vector3 right = new Vector3(basePosition.x + MapSizeX - 0.5f, top.y - MapSizeY * 0.5f);
-        Vector3 left = new Vector3(basePosition.x - 0.5f, right.y);
+        Vector3 right = new Vector3(basePosition.x + MapSizeX - 0.25f, top.y - MapSizeY * 0.5f - 0.25f);
+        Vector3 left = new Vector3(basePosition.x - 0.75f, right.y);
 
 
         //Put all the outer walls
-        GameObject top1 = (GameObject)GameObject.Instantiate(WallPreFab, top, Quaternion.AngleAxis(90, Vector3.forward));
+        GameObject top1 = (GameObject)GameObject.Instantiate(OuterWallPreFab, top, Quaternion.AngleAxis(90, Vector3.forward));
         top1.transform.localScale = new Vector3(1, MapSizeX * startingBounds, 1);
         top1.transform.parent = transform;
         top1.name = "top1";
+        top1.transform.GetChild(0).renderer.material.mainTextureScale = new Vector2(top1.transform.GetChild(0).renderer.material.mainTextureScale.x, top1.transform.localScale.y);
 
-        GameObject bottom1 = (GameObject)GameObject.Instantiate(WallPreFab, bottom, Quaternion.AngleAxis(90, Vector3.forward));
+        GameObject bottom1 = (GameObject)GameObject.Instantiate(OuterWallPreFab, bottom, Quaternion.AngleAxis(90, Vector3.forward));
         bottom1.transform.localScale = new Vector3(1, MapSizeX * startingBounds, 1);
         bottom1.transform.parent = transform;
         bottom1.name = "bottom1";
+        bottom1.transform.GetChild(0).renderer.material.mainTextureScale = new Vector2(bottom1.transform.GetChild(0).renderer.material.mainTextureScale.x, bottom1.transform.localScale.y);
 
-        GameObject left1 = (GameObject)GameObject.Instantiate(WallPreFab, left, Quaternion.identity);
+        GameObject left1 = (GameObject)GameObject.Instantiate(OuterWallPreFab, left, Quaternion.identity);
         left1.transform.localScale = new Vector3(1, MapSizeY * startingBounds, 1);
         left1.name = "left1";
         left1.transform.parent = transform;
+        left1.transform.GetChild(0).renderer.material.mainTextureScale = new Vector2(left1.transform.GetChild(0).renderer.material.mainTextureScale.x, left1.transform.localScale.y);
 
-        GameObject right1 = (GameObject)GameObject.Instantiate(WallPreFab, right, Quaternion.identity);
+        GameObject right1 = (GameObject)GameObject.Instantiate(OuterWallPreFab, right, Quaternion.identity);
         right1.transform.localScale = new Vector3(1, MapSizeY * startingBounds, 1);
         right1.name = "right1";
         right1.transform.parent = transform;
+        right1.transform.GetChild(0).renderer.material.mainTextureScale = new Vector2(right1.transform.GetChild(0).renderer.material.mainTextureScale.x, right1.transform.localScale.y);
 
         //Now, go into BSP
         BinarySpacePartition(basePosition, 0, 0, (int)MapSizeX, (int)MapSizeY, NumberOfSubdivision, 0);

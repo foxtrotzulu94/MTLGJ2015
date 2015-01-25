@@ -13,7 +13,8 @@ GameObject:
   - 50: {fileID: 5047796}
   - 212: {fileID: 21247796}
   - 95: {fileID: 9562278}
-  m_Layer: 0
+  - 114: {fileID: 11400000}
+  m_Layer: 8
   m_Name: PusherPlayer 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -73,6 +74,17 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6360614502f2e104e93037f31c9d598e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11447796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,6 +99,7 @@ MonoBehaviour:
   isFocus: 0
   Type: 2
   Water: {fileID: 189494, guid: 02db740ad165e5d4190e02973e771e2c, type: 2}
+  CooldownDuration: 3
   DestroyCharge: 3
 --- !u!212 &21247796
 SpriteRenderer:

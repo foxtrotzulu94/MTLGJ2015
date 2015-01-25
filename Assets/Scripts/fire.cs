@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class fire : MonoBehaviour {
-	public const int MAX_FIRE = 50;
-	//static int totalFire = 0;
-	//public GameObject fireObject;
-	Vector3 initialFirePositionRight;
+public class fire : MonoBehaviour
+{
 	GameObject score;
 
     Flammable m_FlammableParent;
 
 	// Use this for initialization
-	void Start () {
-		initialFirePositionRight = transform.position;
+	void Start ()
+    {
 		score = GameObject.FindGameObjectWithTag("Score");
 	}
 
@@ -21,8 +18,10 @@ public class fire : MonoBehaviour {
         m_FlammableParent = flammableParent;
     }
 
-	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.gameObject.tag == "Player") {
+	void OnTriggerEnter2D(Collider2D collider)
+    {
+		if (collider.gameObject.tag == "Player")
+        {
 			collider.gameObject.SendMessage ("Kill", SendMessageOptions.DontRequireReceiver);
 		}
 		if (collider.gameObject.tag == "Water")
@@ -36,4 +35,9 @@ public class fire : MonoBehaviour {
             collider.gameObject.SendMessage("Hide", SendMessageOptions.DontRequireReceiver);
         }
 	}
+
+    public void OnDestroy()
+    {
+        Debug.Log("Fire should extinguish tile");
+    }
 }

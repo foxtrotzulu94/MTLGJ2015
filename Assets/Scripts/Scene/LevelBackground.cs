@@ -25,7 +25,7 @@ public class LevelBackground : MonoBehaviour {
         int MapSizeX = width;
         int MapSizeY = height;
 
-        Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)MapSizeX / 2.0f + Vector3.down * (float)MapSizeY / 2.0f + new Vector3(0.5f, 0.5f);
+        Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)MapSizeX / 2.0f + Vector3.down * (float)MapSizeY / 2.0f + new Vector3(0.5f, 0.5f) + Vector3.forward * 0.1f;
 
         GameObject tempFloorTile;
         for (int j = 0; j < MapSizeY; j++)

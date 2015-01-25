@@ -103,8 +103,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void HandleOverviewCamera()
     {
-        inputVectors.x = Input.GetAxisRaw("Horizontal") * CameraSpeed * Time.deltaTime;
-        inputVectors.y = Input.GetAxisRaw("Vertical") * CameraSpeed * Time.deltaTime;
+        inputVectors.x = Input.GetAxisRaw("Horizontal") * CameraSpeed * TimeManager.GetTime(TimeType.Engine);
+        inputVectors.y = Input.GetAxisRaw("Vertical") * CameraSpeed * TimeManager.GetTime(TimeType.Engine);
 
         //Want to have Max and Min zoom Size for Camera to avoid Aliasing
         float scrollWheel = Input.GetAxisRaw("Mouse ScrollWheel");

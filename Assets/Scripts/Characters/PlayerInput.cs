@@ -116,11 +116,11 @@ public class PlayerInput : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Wall" && DestroyCharge > 0 && Type == RobotType.Breaker)
+        /*if (collider.gameObject.tag == "Wall" && DestroyCharge > 0 && Type == RobotType.Breaker)
         {
             Destroy(collider.gameObject);
             DestroyCharge--;
-        }
+        }*/
 
         if (collider.gameObject.tag == "Props")
         {
