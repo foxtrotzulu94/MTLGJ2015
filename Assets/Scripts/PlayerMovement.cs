@@ -21,11 +21,13 @@ public class PlayerMovement : MonoBehaviour {
     private bool gameIsOver = false;
     private int aliveBots=0;
     private int safeBots=0;
+    private TextMesh score;
 
 	// Use this for initialization
 	void Start () {
         //Need to Retrieve Robots from Spawn and not sent out from prefab or we are doomed :/
         RobotArray = new RobotInput[0];
+        score = GetComponentInChildren<TextMesh>();
 	    //Nothing else to do here, right??
 	}
 	
