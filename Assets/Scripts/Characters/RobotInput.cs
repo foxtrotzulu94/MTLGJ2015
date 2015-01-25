@@ -2,7 +2,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class RobotInput : MonoBehaviour {
+public class RobotInput : MonoBehaviour
+{
     Vector2 mouseLocation;
     Collider2D ourBounds;
     public bool isFocus;
