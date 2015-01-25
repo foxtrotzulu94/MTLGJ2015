@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log(a.name);
         }
         inputNumber = 0;
+        RobotArray[inputNumber].BroadcastMessage("ShowSelector");
         RobotArray[inputNumber].isFocus = true;
         RobotInFocus = RobotArray[inputNumber].Type;
         aliveBots = RobotArray.Length;
@@ -89,6 +90,9 @@ public class PlayerMovement : MonoBehaviour {
             //Nothing to do here then, right?
             return;
         }
+
+        RobotArray[previousInput].BroadcastMessage("HideSelector");
+        RobotArray[inputNumber].BroadcastMessage("ShowSelector");
 
         for (int i = 0; i < RobotArray.Length; i++)
         {

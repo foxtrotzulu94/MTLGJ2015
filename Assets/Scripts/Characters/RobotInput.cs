@@ -13,6 +13,8 @@ public class RobotInput : MonoBehaviour {
     //Water player stuff
     public GameObject Water;
     public float CooldownDuration = 3.0f;
+    public GameObject SelectedPrefab;
+    private GameObject m_SelectedObject;
 
     //Breaker player stuff
     public int DestroyCharge = 3;
@@ -37,9 +39,14 @@ public class RobotInput : MonoBehaviour {
 		animator = GetComponent<Animator> ();
         inLevel = true;
         alive = true;
+
+        m_SelectedObject = (GameObject)GameObject.Instantiate(SelectedPrefab, transform.position + Vector3.up * 0.25f, Quaternion.identity);
+        m_SelectedObject.SetActive(false);
+        m_SelectedObject.transform.parent = transform;
     }
  
  // Update is called once per frame
+    float m_SelectionTime = 0.0f;
     void Update () 
     {
         Cooldown -= TimeManager.GetTime(TimeType.Gameplay);
@@ -51,24 +58,47 @@ public class RobotInput : MonoBehaviour {
 
             RightClickAction();
         }
+
+        m_SelectionTime += TimeManager.GetTime(TimeType.Engine) * 5.0f;
+
+        if (m_SelectedObject.active)
+        {
+            float ratio = (Mathf.Sin(m_SelectionTime) + 1) * 0.5f;
+            m_SelectedObject.transform.localPosition = Vector3.up * (0.25f + ratio * 0.2f) + Vector3.back * 0.1f;
+			m_SelectedObject.transform.localScale = new Vector3 (0.2f, 0.2f, 1.0f);
+        }
+    }
+
+    public void ShowSelector()
+    {
+        m_SelectedObject.SetActive(true);
+    }
+
+    public void HideSelector()
+    {
+        m_SelectedObject.SetActive(false);
     }
 
     private void LeftClickAction()
     {
-//Left Click - Movement
+        //Left Click - Movement
         if (Input.GetMouseButtonUp(0))
         {
             mouseLocation = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
         }
-        if (new Vector2(gameObject.transform.position.x, gameObject.transform.position.y) != mouseLocation
-            && alive)
+
+        float distanceToGoal = (mouseLocation - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)).magnitude;
+
+        if (distanceToGoal > 0.01f && alive)
         {
+            HideSelector();
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, mouseLocation,
                 2.0f*TimeManager.GetTime(TimeType.Gameplay));
 
 			float dirX = Mathf.Abs(mouseLocation.x - transform.position.x);
 			float dirY = Mathf.Abs(mouseLocation.y - transform.position.y);
-			if (dirX > dirY) {
+			if (dirX > dirY)
+			{
 				if ((mouseLocation.x - transform.position.x) > 0)
 					animator.SetInteger ("transition", 0);
 				else
@@ -158,7 +188,8 @@ public class RobotInput : MonoBehaviour {
 
     }
 
-	void Kill() {
+	void Kill()
+	{
 		transform.position = new Vector3 (2.644737f, -0.9473684f, 0);	//spawn zone
 		renderer.enabled = false;
 	    alive = false;
@@ -180,11 +211,8 @@ public class RobotInput : MonoBehaviour {
 
 	void Flip()
 	{
-		Debug.Log ("TimeManager.GetTime(TimeType.Gameplay)");
 		if (TimeManager.GetTime(TimeType.Gameplay) > 0.0f)
 		{
-			Debug.Log ("Flip()!");
-			
 			facingRight = !facingRight;
 			Vector3 nextScale = transform.localScale;
 			nextScale.x *= -1f;

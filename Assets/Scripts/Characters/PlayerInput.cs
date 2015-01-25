@@ -153,11 +153,8 @@ public class PlayerInput : MonoBehaviour {
 
 	void Flip()
 	{
-		Debug.Log ("TimeManager.GetTime(TimeType.Gameplay)");
         if (TimeManager.GetTime(TimeType.Gameplay) > 0.0f)
         {
-			Debug.Log ("Flip()!");
-
             facingRight = !facingRight;
             Vector3 nextScale = transform.localScale;
             nextScale.x *= -1f;

@@ -115,6 +115,7 @@ MonoBehaviour:
   Type: 1
   Water: {fileID: 189494, guid: 02db740ad165e5d4190e02973e771e2c, type: 2}
   CooldownDuration: 3
+  SelectedPrefab: {fileID: 100000, guid: 0e6b696e163d7dd448d310796b1ad909, type: 2}
   DestroyCharge: 3
 --- !u!212 &21204604
 SpriteRenderer:

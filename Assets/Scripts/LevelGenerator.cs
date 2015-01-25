@@ -55,11 +55,11 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         //Figure out your 4 corners before placing walls
-        Vector3 top = new Vector3(transform.position.x, basePosition.y + MapSizeY - 0.25f);
-        Vector3 bottom = new Vector3(transform.position.x, basePosition.y - 0.75f); // Will want to add another sort of wall with Incorporated door
+        Vector3 top = new Vector3(transform.position.x, basePosition.y + MapSizeY - 0.25f, 0.01f);
+        Vector3 bottom = new Vector3(transform.position.x, basePosition.y - 0.75f, 0.01f); // Will want to add another sort of wall with Incorporated door
 
-        Vector3 right = new Vector3(basePosition.x + MapSizeX - 0.25f, top.y - MapSizeY * 0.5f - 0.25f);
-        Vector3 left = new Vector3(basePosition.x - 0.75f, right.y);
+        Vector3 right = new Vector3(basePosition.x + MapSizeX - 0.25f, top.y - MapSizeY * 0.5f - 0.25f, 0.01f);
+        Vector3 left = new Vector3(basePosition.x - 0.75f, right.y, 0.01f);
 
 
         //Put all the outer walls
