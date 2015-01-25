@@ -137,6 +137,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 //Load the next level
                 Debug.Log("Load Next Level");
+                Application.LoadLevel("TestScene2");
             }
         }
     }

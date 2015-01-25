@@ -20,6 +20,7 @@ public class Stairs : MonoBehaviour {
         {
             //This thing must be a robot
             aRobot.SendToNextLevel();
+            Debug.Log("Sending to next level");
         }
     }
 }
