@@ -41,7 +41,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinCivilian: 2
   MaxCivilian: 7
-  CivilianPrefab: {fileID: 100000, guid: 40510489abad8b545ab1f22c4ac1fc59, type: 2}
+  CivilianPrefab:
+  - {fileID: 177680, guid: 0e45d64f410f79346a5fc15163f4c4e4, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

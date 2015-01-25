@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WallMultiplier: 0
+  CivilianMultiplier: 5
   text: {fileID: 505254512}
 --- !u!1 &1004171194
 GameObject:
@@ -215,6 +216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Width: 10
   Height: 10
+  MaxWidth: 10
+  MaxHeight: 10
   m_Players: []
   m_Civilian: []
 --- !u!4 &1004171197
@@ -466,6 +469,14 @@ Prefab:
       value: 
       objectReference: {fileID: 11447844, guid: 4d661dc112395204c83f02767927469c,
         type: 2}
+    - target: {fileID: 11400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
+      propertyPath: MaxWidth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
+      propertyPath: MaxHeight
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
   m_RootGameObject: {fileID: 1004171194}

@@ -208,7 +208,26 @@ public class Civilian : MonoBehaviour
         {
             //Save the Civi:
                 //Make them disappear, add to the score, Mark for Destroy
-            this.GetComponent<SpriteRenderer>().enabled = false;
+            Hide();
         }
+
+    }
+
+    public void OnCollisionStay2D(Collision2D someObject)
+    {
+        fire theFire = someObject.collider.GetComponentInParent<fire>();
+        if (theFire != null)
+        {
+            Debug.LogWarning("Kill the civi NOW");
+            Hide();
+        }
+    }
+
+    public void Hide()
+    {
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        this.GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+        //DestroyObject(this);
     }
 }

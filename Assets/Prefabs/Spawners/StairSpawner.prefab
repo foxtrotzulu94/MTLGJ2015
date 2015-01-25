@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d04dfab7e06624428b69bb28fe8a8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StairPrefab: {fileID: 153228, guid: 85679e00dfe10e148af9c4dc7d02eb2f, type: 2}
+  StairPrefab: {fileID: 163752, guid: 85679e00dfe10e148af9c4dc7d02eb2f, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

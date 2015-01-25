@@ -56,10 +56,7 @@ public class PlayerMovement : MonoBehaviour {
         RobotArray = (RobotInput[])Object.FindObjectsOfType<RobotInput>(); //Hopefully these are the ones we want, right?
         Debug.Log(RobotArray);
         Debug.Log("Initializing Player Movement...");
-        foreach (RobotInput a in RobotArray)
-        {
-            Debug.Log(a.name);
-        }
+
         inputNumber = 0;
         RobotArray[inputNumber].isFocus = true;
         RobotInFocus = RobotArray[inputNumber].Type;

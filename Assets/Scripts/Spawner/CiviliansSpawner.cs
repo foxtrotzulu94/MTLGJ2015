@@ -6,7 +6,7 @@ public class CiviliansSpawner : ISpawner
 {
     public int MinCivilian = 2;
     public int MaxCivilian = 7;
-    public GameObject CivilianPrefab;
+    public GameObject[] CivilianPrefab;
 
     public override void Spawn(Grid grid)
     {
@@ -47,7 +47,9 @@ public class CiviliansSpawner : ISpawner
             for (int i = 0; i < numberOfCivilian && possibilities.Count > 0; ++i)
             {
                 int randomIndex = Random.Range(0, possibilities.Count);
-                GameObject.Instantiate(CivilianPrefab, possibilities[randomIndex].transform.position, CivilianPrefab.transform.rotation);
+                int randomCivilian = Random.Range(0, CivilianPrefab.Length);
+                GameObject.Instantiate(CivilianPrefab[randomCivilian], possibilities[randomIndex].transform.position, 
+                    CivilianPrefab[randomCivilian].transform.rotation);
             }
         }
     }
