@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 Debug.Log("GAME OVER");
                 gameIsOver = true;
+                Application.LoadLevel("GameOver");
                 //Nice GUI thing here
             }
             else if (safeBots == aliveBots && safeBots!=0)
