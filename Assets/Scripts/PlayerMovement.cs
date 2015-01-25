@@ -17,10 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector2 inputVectors;
     private float xTime;
     private float yTime;
-    private bool gameHasStarted = false;
     private bool gameIsOver = false;
-    private int aliveBots=0;
-    private int safeBots=0;
 
 	// Use this for initialization
 	void Start () {
@@ -63,8 +60,7 @@ public class PlayerMovement : MonoBehaviour {
         inputNumber = 0;
         RobotArray[inputNumber].isFocus = true;
         RobotInFocus = RobotArray[inputNumber].Type;
-        aliveBots = RobotArray.Length;
-        gameHasStarted = true;
+        Debug.Log(RobotInFocus);
     }
 
     private void HandleRobots()
@@ -119,43 +115,33 @@ public class PlayerMovement : MonoBehaviour {
         {
             Camera.main.orthographicSize += 1;
         }
-
+        //Debug.Log(Input.GetAxis("Horizontal") + " " + Input.GetAxis("Vertical"));
         transform.Translate(inputVectors.x, inputVectors.y, 0);
     }
 
     private void CheckRobots()
     {
-        if (gameHasStarted && !gameIsOver)
+        int killCount = 0;
+        for (int i = 0; i < RobotArray.Length; i++)
         {
-            if (aliveBots == 0)
+            if (RobotArray[i].isAlive == false)
             {
-                Debug.Log("GAME OVER");
-                gameIsOver = true;
-                //Nice GUI thing here
-            }
-            else if (safeBots == aliveBots && safeBots!=0)
-            {
-                //Load the next level
-                Debug.Log("Load Next Level");
+                killCount++;
             }
         }
-    }
-
-    public void RegisterKilledRobot(RobotInput someBot)
-    {
-        if (gameHasStarted)
-            aliveBots--;
-        else
-            Debug.LogError("Gameplay received Robot Death before the game had even started!");
-    }
-
-    public void RegisterSafeRobot(RobotInput someBot)
-    {
-        if (gameHasStarted)
-            safeBots++;
-        else
-            Debug.LogError("A Robot made it to the stairs BEFORE starting the game!");
-
+        if (killCount == RobotArray.Length) //All Robots are DEAD
+        {
+            //GAME OVER
+            Debug.Log("GAME OVER");
+            gameIsOver = true;
+            //Make nice box menu appear
+        }
+        if (killCount == 2) //Do something tragic here
+        {
+        }
+        if (killCount == 1) //Do something less tragic here
+        {
+        }
     }
 
     //private void OnGUI()

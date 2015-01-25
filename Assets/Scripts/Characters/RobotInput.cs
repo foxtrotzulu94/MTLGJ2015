@@ -24,24 +24,21 @@ public class RobotInput : MonoBehaviour {
     }
 
     private bool alive;
-    private bool inLevel;
-    private PlayerMovement Main;
+    
 
  // Use this for initialization
     void Start () 
     {
-        Main = Camera.main.GetComponent<PlayerMovement>();
         mouseLocation = gameObject.transform.position;
         ourBounds = GetComponent<BoxCollider2D>();
 		animator = GetComponent<Animator> ();
-        inLevel = true;
         alive = true;
     }
  
  // Update is called once per frame
     void Update () 
     {
-        if (isFocus && inLevel && alive)
+        if (isFocus)
         {
             //LookAtMouse();
 
@@ -89,34 +86,15 @@ public class RobotInput : MonoBehaviour {
 
     private void RightClickAction()
     {
-        if ( Input.GetMouseButtonUp(1) )
+        if (Input.GetMouseButtonUp(1) && Type == RobotType.Waterer)
         {
+            GameObject projectileGameObject = Instantiate(Water, transform.position, Quaternion.identity) as GameObject;
             Vector3 mouseLocation2 =
-                    Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-            if (Type == RobotType.Waterer)
-            {
-                GameObject projectileGameObject = Instantiate(Water, transform.position, Quaternion.identity) as GameObject;
-                projectileGameObject.rigidbody2D.AddForce(
-                    (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized * 10,
-                    ForceMode2D.Impulse);
-                projectileGameObject.AddComponent("SquirtTimer");
-            }
-            else if (Type == RobotType.Breaker)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x,transform.position.y), 
-                    (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)));
-                    //2.0f);
-                if (hit.collider.gameObject.GetType()==typeof(Wall))
-                {
-                    Destroy(hit.collider.gameObject);
-                    //DestroyCharge--;
-                }
-            }
-            else if (Type == RobotType.Pusher)
-            {
-                //Not sure what goes here/
-            }
-
+                Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+            projectileGameObject.rigidbody2D.AddForce(
+                (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized*10,
+                ForceMode2D.Impulse);
+            projectileGameObject.AddComponent("SquirtTimer");
         }
     }
 
@@ -135,11 +113,12 @@ public class RobotInput : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Wall"  && Type == RobotType.Breaker)
+        if (collider.gameObject.tag == "Wall" && DestroyCharge > 0 && Type == RobotType.Breaker)
         {
             Destroy(collider.gameObject);
             DestroyCharge--;
         }
+
         if (collider.gameObject.tag == "Props")
         {
             if (Type == RobotType.Pusher)
@@ -154,8 +133,7 @@ public class RobotInput : MonoBehaviour {
 		transform.position = new Vector3 (2.644737f, -0.9473684f, 0);	//spawn zone
 		renderer.enabled = false;
 	    alive = false;
-        Main.RegisterKilledRobot(this);
-        //Respawn();
+        Respawn();
 	}
 
 	void Respawn()
@@ -182,10 +160,7 @@ public class RobotInput : MonoBehaviour {
 		return facingRight ? -i : i;
 	}
 
-    public void SendToNextLevel()
-    {
-        this.GetComponent<SpriteRenderer>().enabled=false;
-        inLevel = false;
-        Main.RegisterSafeRobot(this);
-    }
+	void calculateWallScore() {
+		
+	}
 }

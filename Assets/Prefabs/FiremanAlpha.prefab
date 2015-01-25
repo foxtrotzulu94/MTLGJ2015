@@ -12,7 +12,6 @@ GameObject:
   - 114: {fileID: 11470126}
   - 50: {fileID: 5070126}
   - 60: {fileID: 6070126}
-  - 82: {fileID: 8298486}
   m_Layer: 0
   m_Name: FiremanAlpha
   m_TagString: Untagged
@@ -62,64 +61,6 @@ PolygonCollider2D:
       - {x: -.125, y: -.125}
       - {x: .125, y: -.125}
       - {x: .125, y: .125}
---- !u!82 &8298486
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 170126}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!114 &11470126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,13 +72,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f26c0e6c9773c449b26e5f0803bc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseLocation: {x: 0, y: 0}
-  ourBounds: {fileID: 0}
-  isFocus: 0
   Type: 0
   Water: {fileID: 189494, guid: 02db740ad165e5d4190e02973e771e2c, type: 2}
   DestroyCharge: 3
-  alive: 0
 --- !u!212 &21270126
 SpriteRenderer:
   m_ObjectHideFlags: 1
