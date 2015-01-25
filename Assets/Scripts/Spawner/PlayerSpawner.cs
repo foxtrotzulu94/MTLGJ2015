@@ -44,6 +44,7 @@ public class PlayerSpawner : ISpawner
                 possibilities.RemoveAt(randomIndex);
             }
         }
+        Debug.Log("Spawned Players...");
     }
 
     private bool ValidateTile(Grid grid, Tile tile, ref List<Tile> validTiles)

@@ -40,9 +40,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerObjects:
-  - {fileID: 100000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
-  - {fileID: 100000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
-  - {fileID: 100000, guid: 11c6edcb176e7c3478e258462965dff0, type: 2}
+  - {fileID: 104604, guid: 345a13119a545d740bf74e40c1f8c08f, type: 2}
+  - {fileID: 176278, guid: 5048c55aa71aa0246a79635b08177026, type: 2}
+  - {fileID: 147796, guid: d45d2644494a42148ad289c54b3e3e43, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

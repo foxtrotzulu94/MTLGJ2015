@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// This class essentially handles all input for Camera, Players AND Gameplay Logic (e.g. EndStates)
+/// </summary>
+
 public class PlayerMovement : MonoBehaviour {
 
     public float CameraSpeed;
@@ -13,20 +17,15 @@ public class PlayerMovement : MonoBehaviour {
     private Vector2 inputVectors;
     private float xTime;
     private float yTime;
+    private bool gameHasStarted = false;
+    private bool gameIsOver = false;
+    private int aliveBots=0;
+    private int safeBots=0;
 
 	// Use this for initialization
 	void Start () {
         //Need to Retrieve Robots from Spawn and not sent out from prefab or we are doomed :/
-        RobotArray = GameObject.FindObjectsOfType<RobotInput>(); //Hopefully these are the ones we want, right?
-        Debug.Log(RobotArray);
-        foreach (RobotInput a in RobotArray)
-        {
-            Debug.Log(a.name);
-        }
-        inputNumber = 0;
-        RobotArray[inputNumber].isFocus=true;
-        RobotInFocus = RobotArray[inputNumber].Type;
-        Debug.Log(RobotInFocus);
+        RobotArray = new RobotInput[0];
 	    //Nothing else to do here, right??
 	}
 	
@@ -37,28 +36,36 @@ public class PlayerMovement : MonoBehaviour {
             Application.LoadLevel("Menu");
         }
 
-        HandleRobots();
+        //Check if the EndCondition has been met
+        CheckRobots();
 
-        
-
-        inputVectors.x = Input.GetAxisRaw("Horizontal") * CameraSpeed * Time.deltaTime;
-        inputVectors.y = Input.GetAxisRaw("Vertical") * CameraSpeed * Time.deltaTime;
-
-        //Want to have Max and Min zoom Size for Camera to avoid Aliasing
-        float scrollWheel = Input.GetAxisRaw("Mouse ScrollWheel");
-        if (scrollWheel > 0)
+        if (RobotArray.Length == 0)
         {
-            Camera.main.orthographicSize -= 1;
+            RetrieveRobotControllers();
         }
-        else if (scrollWheel < 0)
+        else
         {
-            Camera.main.orthographicSize += 1;
+            HandleRobots();
         }
-        //Debug.Log(Input.GetAxis("Horizontal") + " " + Input.GetAxis("Vertical"));
-        transform.Translate(inputVectors.x , inputVectors.y , 0);
-        
+
+        HandleOverviewCamera();
 	}
 
+    private void RetrieveRobotControllers()
+    {
+        RobotArray = (RobotInput[])Object.FindObjectsOfType<RobotInput>(); //Hopefully these are the ones we want, right?
+        Debug.Log(RobotArray);
+        Debug.Log("Initializing Player Movement...");
+        foreach (RobotInput a in RobotArray)
+        {
+            Debug.Log(a.name);
+        }
+        inputNumber = 0;
+        RobotArray[inputNumber].isFocus = true;
+        RobotInFocus = RobotArray[inputNumber].Type;
+        aliveBots = RobotArray.Length;
+        gameHasStarted = true;
+    }
 
     private void HandleRobots()
     {
@@ -96,5 +103,69 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
     }
+
+    private void HandleOverviewCamera()
+    {
+        inputVectors.x = Input.GetAxisRaw("Horizontal") * CameraSpeed * Time.deltaTime;
+        inputVectors.y = Input.GetAxisRaw("Vertical") * CameraSpeed * Time.deltaTime;
+
+        //Want to have Max and Min zoom Size for Camera to avoid Aliasing
+        float scrollWheel = Input.GetAxisRaw("Mouse ScrollWheel");
+        if (scrollWheel > 0)
+        {
+            Camera.main.orthographicSize -= 1;
+        }
+        else if (scrollWheel < 0)
+        {
+            Camera.main.orthographicSize += 1;
+        }
+
+        transform.Translate(inputVectors.x, inputVectors.y, 0);
+    }
+
+    private void CheckRobots()
+    {
+        if (gameHasStarted && !gameIsOver)
+        {
+            if (aliveBots == 0)
+            {
+                Debug.Log("GAME OVER");
+                gameIsOver = true;
+                //Nice GUI thing here
+            }
+            else if (safeBots == aliveBots && safeBots!=0)
+            {
+                //Load the next level
+                Debug.Log("Load Next Level");
+                Application.LoadLevel("TestScene2");
+            }
+        }
+    }
+
+    public void RegisterKilledRobot(RobotInput someBot)
+    {
+        if (gameHasStarted)
+            aliveBots--;
+        else
+            Debug.LogError("Gameplay received Robot Death before the game had even started!");
+    }
+
+    public void RegisterSafeRobot(RobotInput someBot)
+    {
+        if (gameHasStarted)
+            safeBots++;
+        else
+            Debug.LogError("A Robot made it to the stairs BEFORE starting the game!");
+
+    }
+
+    //private void OnGUI()
+    //{
+    //    if (gameIsOver)
+    //    {
+    //        Time.timeScale = 0;
+    //        GUI.Button(new Rect(Screen.width / 2 + 100, Screen.height - 350, 100, 30), "Hard");
+    //    }
+    //}
 
 }
