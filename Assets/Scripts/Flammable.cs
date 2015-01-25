@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+#if UNITY_EDITOR
 using UnityEditor;
-
+#endif
 public enum FlammableState
 {
 	NotOnFire,
