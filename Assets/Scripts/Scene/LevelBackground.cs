@@ -27,6 +27,9 @@ public class LevelBackground : MonoBehaviour {
 
         Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)MapSizeX / 2.0f + Vector3.down * (float)MapSizeY / 2.0f + new Vector3(0.5f, 0.5f) + Vector3.forward * 0.1f;
 
+        GameObject parent = new GameObject();
+        parent.transform.parent = transform;
+
         GameObject tempFloorTile;
         for (int j = 0; j < MapSizeY; j++)
         {
@@ -35,7 +38,7 @@ public class LevelBackground : MonoBehaviour {
                 origin.x = i;
                 origin.y = j;
                 tempFloorTile = (GameObject)GameObject.Instantiate(Background, origin + basePosition, Quaternion.identity);
-                //grid.SetTile(tempFloorTile, new TileCoord(i, j));
+                tempFloorTile.transform.parent = parent.transform;
             }
         }
     }
