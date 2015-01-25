@@ -21,10 +21,10 @@ public class fire : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.tag == "Player") {
-			collider.gameObject.SendMessage ("Kill");
+			collider.gameObject.SendMessage ("Kill", SendMessageOptions.DontRequireReceiver);
 		}
-	    if (collider.gameObject.tag == "Water")
-	    {
+		if (collider.gameObject.tag == "Water")
+		{
 	        Destroy(gameObject);
 	    }
 	}

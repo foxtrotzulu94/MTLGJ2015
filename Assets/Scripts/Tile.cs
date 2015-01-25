@@ -29,6 +29,16 @@ public class Tile : MonoBehaviour
         return false;
     }
 
+    public bool IsConnectedTo(Tile B)
+    {
+        if (B != null)
+        {
+            return !HasAWall(GetDirectionTo(B));
+        }
+
+        return false;
+    }
+
     public void GizmosDrawWalls(float ratio, bool drawWallsColor, Color wallColor)
     {
         Gizmos.color = wallColor;
@@ -133,12 +143,16 @@ public class Tile : MonoBehaviour
 
     public void OnDrawGizmos()
     {
+		if (m_Coord == null)
+		{
+			return;
+		}
         GizmosDrawWalls(1.0f, true, Color.white);
     }
 
     public void OnDrawGizmosSelected()
     {
-        GizmosDrawWalls(0.9f, false, Color.red);
+        GizmosDrawWalls(0.9f, true, Color.red);
 
         List<Tile> neighbors = GetConnectedNeighboors();
         foreach(Tile t in neighbors)

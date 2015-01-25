@@ -11,6 +11,8 @@ public class LevelGenerator : MonoBehaviour {
     public int SmallestRoomSize;
     public int DoorOpening;
 
+    public ISpawner[] GameObjectSpawners;
+
     private GameObject[] CornerTiles;
 
 	// Use this for initialization
@@ -78,10 +80,16 @@ public class LevelGenerator : MonoBehaviour {
 
         //Now, go into BSP
         BinarySpacePartition(basePosition, 0, 0, (int)MapSizeX, (int)MapSizeY, 4, 0);
+
+        for (int i = 0; i < GameObjectSpawners.Length; ++i)
+        {
+            GameObjectSpawners[i].Spawn(grid);
+        }
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 	
 	}
     /// <summary>

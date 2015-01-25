@@ -29,27 +29,42 @@ public class Flammable : MonoBehaviour
     {
         m_Tile = gameObject.GetComponent<Tile>();
 
-        if (m_State == FlammableState.OnFire)
+        if (IsOnFire())
         {
             Ignite();
         }
+    }
+
+    public bool IsOnFire()
+    {
+        if (m_State == FlammableState.OnFire || m_State == FlammableState.SuperOnFire)
+        {
+            return true;
+        }
+
+        return false;
     }
 
 	public void Update()
 	{
 		if(CanSpreadFire)
 		{
-			if (m_State != FlammableState.NotOnFire)
+            if (IsOnFire())
 	        {
                 if (m_Tile != null)
                 {
+                    float spreadingMultiplier = 1.0f;
+                    if (m_State == FlammableState.SuperOnFire)
+                    {
+                        spreadingMultiplier = 2.5f;
+                    }
                     List<Tile> neighbors = m_Tile.GetConnectedNeighboors();
                     for (int i = 0; i < neighbors.Count; ++i)
                     {
                         Flammable f = neighbors[i].GetComponent<Flammable>();
                         if (f != null)
                         {
-                            f.ReceiveHeat(UnityEngine.Random.Range(HeatSpreadingRange.x, HeatSpreadingRange.y) * TimeManager.GetTime(TimeType.Gameplay));
+                            f.ReceiveHeat(UnityEngine.Random.Range(HeatSpreadingRange.x, HeatSpreadingRange.y) * spreadingMultiplier * TimeManager.GetTime(TimeType.Gameplay));
                         }
                     }
 

@@ -7,8 +7,8 @@ public class Grid : MonoBehaviour
     public int Width = 10;
     public int Height = 10;
 
-    private Grid _instance;
-    public Grid Instance 
+    private static Grid _instance;
+    public static Grid Instance 
     {
         get
         {
@@ -16,7 +16,10 @@ public class Grid : MonoBehaviour
         }
     }
 
-    private List<List<Tile>> m_Tiles = new List<List<Tile>>();
+    public List<List<Tile>> m_Tiles = new List<List<Tile>>();
+
+    public List<GameObject> m_Players = new List<GameObject>();
+    public List<GameObject> m_Civilian = new List<GameObject>();
 
     public void Awake()
     {
@@ -40,16 +43,6 @@ public class Grid : MonoBehaviour
         {
             lg.GenerateLevel(Width, Height);
         }
-
-         // @TEST
-        TileCoord fireCoord = new TileCoord(Random.Range(0, Width), Random.Range(0, Height));
-        Tile tile = GetTile(fireCoord);
-        Flammable flamabble = tile.gameObject.GetComponent<Flammable>();
-        if (flamabble != null)
-        {
-            flamabble.Ignite();
-        }
-        
     }
 
     public void SetTile(GameObject tileObject, TileCoord coord)
@@ -123,6 +116,72 @@ public class Grid : MonoBehaviour
     public void AddWall(TileCoord A, TileCoord B, GameObject gameObject)
     {
         AddWall(GetTile(A), GetTile(B), gameObject);
+    }
+
+    public Tile GetTileAtPosition(Vector3 position)
+    {
+        Vector3 basePosition = gameObject.transform.position + Vector3.left * (float)Width / 2.0f + Vector3.down * (float)Height / 2.0f + new Vector3(0.5f, 0.5f, 0.0f);
+
+        Vector3 vectorCoord = position - basePosition;
+        TileCoord coord = new TileCoord(Mathf.RoundToInt(vectorCoord.x), Mathf.RoundToInt(vectorCoord.y));
+
+        return GetTile(coord);
+    }
+
+    public List<Tile> GetConnectedTileInRange(Tile tile, int range)
+    {
+        return GetNConnectedTileInRange(tile, range, -1);
+    }
+
+    public List<Tile> GetNConnectedTileInRange(Tile tile, int range, int number)
+    {
+        HashSet<Tile> connectingTiles = new HashSet<Tile>();
+
+		List<Tile> neighbors = new List<Tile>(){tile};
+        List<Tile> newNeighbors = new List<Tile>();
+
+        for (int i = 0; i < neighbors.Count; ++i)
+        {
+            connectingTiles.Add(neighbors[i]);
+            if (connectingTiles.Count == number)
+            {
+                return new List<Tile>(connectingTiles);
+            }
+        }
+
+        for (int r = 0; r < range; ++r)
+        {
+            newNeighbors.Clear();
+            while (neighbors.Count > 0)
+            {
+                List<Tile> currentNeighbors = neighbors[0].GetNeighboors();
+                for (int j = 0; j < currentNeighbors.Count; ++j)
+                {
+					if (!connectingTiles.Contains(currentNeighbors[j]) && currentNeighbors[j] != tile)
+                    {
+						if(neighbors[0].IsConnectedTo(currentNeighbors[j]))
+						{
+                            newNeighbors.Add(currentNeighbors[j]);
+                        }
+                    }
+                }
+
+                for (int i = 0; i < newNeighbors.Count; ++i)
+                {
+                    connectingTiles.Add(newNeighbors[i]);
+                    if (connectingTiles.Count == number)
+                    {
+                        return new List<Tile>(connectingTiles);
+                    }
+                }
+                neighbors.RemoveAt(0);
+            }
+
+			neighbors.Clear();
+			neighbors.AddRange(newNeighbors);
+        }
+
+        return new List<Tile>(connectingTiles);
     }
 
 	//@TEST

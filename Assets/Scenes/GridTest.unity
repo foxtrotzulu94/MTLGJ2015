@@ -83,6 +83,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 851623533}
   - 114: {fileID: 851623532}
+  - 114: {fileID: 851623535}
   - 114: {fileID: 851623534}
   m_Layer: 0
   m_Name: Grid
@@ -105,8 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Width: 10
   Height: 10
-  TilePrefab: {fileID: 100000, guid: 872938f572d871b49bd263f53f1ccf2d, type: 2}
-  WallPrefab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
+  m_Players: []
+  m_Civilian: []
 --- !u!4 &851623533
 Transform:
   m_ObjectHideFlags: 0
@@ -132,10 +133,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FloorPrefab: {fileID: 164324, guid: ea31d96490fa9db409a7bd108d37d582, type: 2}
   WallPreFab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
+  Player0: {fileID: 0}
   Decorations: []
   SmallestRoomSize: 3
-  bottom: 0
-  MaxMapTiles: 50
+  DoorOpening: 0
+  GameObjectSpawners: []
+--- !u!114 &851623535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: b496b618e2a1bfb478c1f9fcca86f86f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1298186568}
+  m_GameObject: {fileID: 851623531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0420472df7b2bc34584433f49cdbbe13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloorPrefab: {fileID: 164324, guid: ea31d96490fa9db409a7bd108d37d582, type: 2}
+  WallPreFab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
+  Player0: {fileID: 0}
+  Decorations: []
+  SmallestRoomSize: 3
+  DoorOpening: 1
+  GameObjectSpawners:
+  - {fileID: 11400000, guid: 891f3f8aeb7899b4ab6b549a9baaaa0f, type: 2}
+  - {fileID: 11400000, guid: a71212ffd895035478ef3c4ff629ca5f, type: 2}
+  - {fileID: 11400000, guid: 432dcc2de865bc644876b974701538c4, type: 2}
 --- !u!1 &892847642
 GameObject:
   m_ObjectHideFlags: 0
