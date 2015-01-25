@@ -6,6 +6,7 @@ public class RobotInput : MonoBehaviour {
     Vector2 mouseLocation;
     Collider2D ourBounds;
     public bool isFocus;
+    public bool isAlive { get { return alive; } }
     public RobotType Type;
 
     //Water player stuff
@@ -37,7 +38,7 @@ public class RobotInput : MonoBehaviour {
     {
         if (isFocus)
         {
-            LookAtMouse();
+            //LookAtMouse();
 
             LeftClickAction();
 

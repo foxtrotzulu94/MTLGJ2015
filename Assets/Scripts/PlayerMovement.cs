@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// This class essentially handles all input for Camera, Players AND Gameplay Logic (e.g. EndStates)
+/// </summary>
+
 public class PlayerMovement : MonoBehaviour {
 
     public float CameraSpeed;
@@ -13,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector2 inputVectors;
     private float xTime;
     private float yTime;
+    private bool gameIsOver = false;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +33,9 @@ public class PlayerMovement : MonoBehaviour {
             Application.LoadLevel("Menu");
         }
 
+        //Check if the EndCondition has been met
+        CheckRobots();
+
         if (RobotArray.Length == 0)
         {
             RetrieveRobotControllers();
@@ -36,22 +44,8 @@ public class PlayerMovement : MonoBehaviour {
         {
             HandleRobots();
         }
-        inputVectors.x = Input.GetAxisRaw("Horizontal") * CameraSpeed * Time.deltaTime;
-        inputVectors.y = Input.GetAxisRaw("Vertical") * CameraSpeed * Time.deltaTime;
 
-        //Want to have Max and Min zoom Size for Camera to avoid Aliasing
-        float scrollWheel = Input.GetAxisRaw("Mouse ScrollWheel");
-        if (scrollWheel > 0)
-        {
-            Camera.main.orthographicSize -= 1;
-        }
-        else if (scrollWheel < 0)
-        {
-            Camera.main.orthographicSize += 1;
-        }
-        //Debug.Log(Input.GetAxis("Horizontal") + " " + Input.GetAxis("Vertical"));
-        transform.Translate(inputVectors.x , inputVectors.y , 0);
-        
+        HandleOverviewCamera();
 	}
 
     private void RetrieveRobotControllers()
@@ -105,5 +99,58 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
     }
+
+    private void HandleOverviewCamera()
+    {
+        inputVectors.x = Input.GetAxisRaw("Horizontal") * CameraSpeed * Time.deltaTime;
+        inputVectors.y = Input.GetAxisRaw("Vertical") * CameraSpeed * Time.deltaTime;
+
+        //Want to have Max and Min zoom Size for Camera to avoid Aliasing
+        float scrollWheel = Input.GetAxisRaw("Mouse ScrollWheel");
+        if (scrollWheel > 0)
+        {
+            Camera.main.orthographicSize -= 1;
+        }
+        else if (scrollWheel < 0)
+        {
+            Camera.main.orthographicSize += 1;
+        }
+        //Debug.Log(Input.GetAxis("Horizontal") + " " + Input.GetAxis("Vertical"));
+        transform.Translate(inputVectors.x, inputVectors.y, 0);
+    }
+
+    private void CheckRobots()
+    {
+        int killCount = 0;
+        for (int i = 0; i < RobotArray.Length; i++)
+        {
+            if (RobotArray[i].isAlive == false)
+            {
+                killCount++;
+            }
+        }
+        if (killCount == RobotArray.Length) //All Robots are DEAD
+        {
+            //GAME OVER
+            Debug.Log("GAME OVER");
+            gameIsOver = true;
+            //Make nice box menu appear
+        }
+        if (killCount == 2) //Do something tragic here
+        {
+        }
+        if (killCount == 1) //Do something less tragic here
+        {
+        }
+    }
+
+    //private void OnGUI()
+    //{
+    //    if (gameIsOver)
+    //    {
+    //        Time.timeScale = 0;
+    //        GUI.Button(new Rect(Screen.width / 2 + 100, Screen.height - 350, 100, 30), "Hard");
+    //    }
+    //}
 
 }
