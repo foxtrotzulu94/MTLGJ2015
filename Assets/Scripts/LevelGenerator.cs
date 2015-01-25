@@ -9,6 +9,7 @@ public class LevelGenerator : MonoBehaviour {
     public GameObject[] Decorations;
 
     public int SmallestRoomSize;
+    public int DoorOpening;
 
     private GameObject[] CornerTiles;
 
@@ -165,9 +166,19 @@ public class LevelGenerator : MonoBehaviour {
             BinarySpacePartition(basePosition, x1, y1, midPoint, y2, maxLevels, currentLevel + 1);
             BinarySpacePartition(basePosition, midPoint, y1, x2, y2, maxLevels, currentLevel + 1);
             GameObject unitWall;
+
+            //Choose a point to make the Door Opening
+            int doorIndex = Random.Range(0, yLength - DoorOpening);
+
             //Build ALL of the Walls as you return from callstack
             for (int i = 0; i < yLength; i++)
             {
+                if (i == doorIndex)
+                {
+                    i += DoorOpening - 1;
+                    continue;
+                }
+
                 TileCoord coord = new TileCoord(midPoint, y2 - i - 1);
                 unitWall = (GameObject)GameObject.Instantiate(WallPreFab, new Vector3(coord.X - 0.5f, coord.Y) + basePosition
                     , Quaternion.identity);
@@ -191,10 +202,19 @@ public class LevelGenerator : MonoBehaviour {
             BinarySpacePartition(basePosition, x1, y1, x2, midPoint, maxLevels, currentLevel + 1);
             BinarySpacePartition(basePosition, x1, midPoint, x2, y2, maxLevels, currentLevel + 1);
             GameObject unitWall;
+
+            //Choose a point to make the Door Opening
+            int doorIndex = Random.Range(0, yLength - DoorOpening);
+
             //Build ALL of the Walls as you return from callstack
-            //TODO: Have a random point for peek hole
             for (int i = 0; i < xLength; i++)
             {
+                if (i == doorIndex)
+                {
+                    i += DoorOpening-1;
+                    continue;
+                }
+
                 TileCoord coord = new TileCoord(x2 - i - 1, midPoint);
 
                 unitWall = (GameObject)GameObject.Instantiate(WallPreFab, new Vector3(coord.X, coord.Y - 0.5f) + basePosition
