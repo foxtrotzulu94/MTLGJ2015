@@ -16,6 +16,7 @@ public enum FlammableState
 public class Flammable : MonoBehaviour
 {
 	public float FlameResistance = 100.0f;
+	public float RuntimeFlameResistance;
 	public GameObject FireObject = null;
     public bool WaitForEventSyncToIgnite = false;
 	public bool CanSpreadFire = true;
@@ -31,11 +32,20 @@ public class Flammable : MonoBehaviour
     {
         m_Tile = gameObject.GetComponent<Tile>();
 
-        if (IsOnFire())
+        if (IsOnFire ())
         {
-            Ignite();
-        }
+			Ignite ();
+		} else
+        {
+            Extinguish();
+		}
     }
+
+	public void Extinguish()
+	{
+		RuntimeFlameResistance = FlameResistance;
+        m_State = FlammableState.NotOnFire;
+	}
 
     public bool IsOnFire()
     {
@@ -92,7 +102,7 @@ public class Flammable : MonoBehaviour
 		}
         else
         {
-		    if (FlameResistance <= 0.0f && WaitForEventSyncToIgnite)
+            if (RuntimeFlameResistance <= 0.0f && WaitForEventSyncToIgnite)
 		    {
 			    SpecialEventManager.Instance.Register(gameObject);
 		    }
@@ -111,9 +121,9 @@ public class Flammable : MonoBehaviour
 
     public void ReceiveHeat(float heatAmount)
     {
-        FlameResistance -= heatAmount;
+        RuntimeFlameResistance -= heatAmount;
 
-        if (FlameResistance <= 0.0f && !WaitForEventSyncToIgnite)
+        if (RuntimeFlameResistance <= 0.0f && !WaitForEventSyncToIgnite)
         {
             Ignite();
         }
@@ -121,7 +131,7 @@ public class Flammable : MonoBehaviour
 
     public void Ignite()
     {
-        FlameResistance = 0.0f;
+        RuntimeFlameResistance = 0.0f;
 
         if (!IsDestroyedOnIgnition)
         {
@@ -154,7 +164,7 @@ public class Flammable : MonoBehaviour
     public void OnDrawGizmos()
     {
 #if UNITY_EDITOR
-		Handles.Label(transform.position + Vector3.left * 0.5f, String.Format("{0:0.##}", FlameResistance));
+        Handles.Label(transform.position + Vector3.left * 0.5f, String.Format("{0:0.##}", RuntimeFlameResistance));
 #endif
 		if (m_State == FlammableState.OnFire || m_State == FlammableState.SuperOnFire)
         {

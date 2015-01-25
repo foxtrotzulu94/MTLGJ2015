@@ -39,5 +39,6 @@ public class fire : MonoBehaviour
     public void OnDestroy()
     {
         Debug.Log("Fire should extinguish tile");
+        m_FlammableParent.Extinguish();
     }
 }

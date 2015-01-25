@@ -13,7 +13,6 @@ public class SquirtTimer : MonoBehaviour {
         transform.position += direction * Speed * TimeManager.GetTime(TimeType.Gameplay);
 
         lifeTime -= TimeManager.GetTime(TimeType.Gameplay);
-        Debug.Log(lifeTime);
         if (lifeTime <= 0)
         {
             Destroy(gameObject);
