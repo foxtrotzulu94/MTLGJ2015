@@ -19,7 +19,7 @@ public class score : MonoBehaviour {
         
 	}
 
-	void Increment(int i) {
+	public void Increment(int i) {
 		totalScore += i;
 	}
 
@@ -37,6 +37,6 @@ public class score : MonoBehaviour {
         {
             totalCount+=allRobots[i].civiliansRescued;
         }
-        Increment(CivilianMultiplier * totalCount);
+        Increment(totalCount);
     }
 }
