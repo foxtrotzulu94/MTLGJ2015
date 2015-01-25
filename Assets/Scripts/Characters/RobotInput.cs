@@ -14,11 +14,11 @@ public class RobotInput : MonoBehaviour {
     //Breaker player stuff
     public int DestroyCharge = 3;
 
-    public enum RobotType
+    public enum RobotType : int
     {
-        Waterer,
-        Pusher,
-        Breaker
+        Waterer = 1,
+        Pusher = 2,
+        Breaker = 3
     }
 
     private bool alive;
