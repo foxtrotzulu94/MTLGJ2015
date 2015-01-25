@@ -180,10 +180,16 @@ public class RobotInput : MonoBehaviour {
 
 	void Flip()
 	{
-		facingRight = !facingRight;
-		Vector3 nextScale = transform.localScale;
-		nextScale.x *= -1f;
-		transform.localScale = nextScale;
+		Debug.Log ("TimeManager.GetTime(TimeType.Gameplay)");
+		if (TimeManager.GetTime(TimeType.Gameplay) > 0.0f)
+		{
+			Debug.Log ("Flip()!");
+			
+			facingRight = !facingRight;
+			Vector3 nextScale = transform.localScale;
+			nextScale.x *= -1f;
+			transform.localScale = nextScale;
+		}
 	}
 	
 	float Orient(float i) {
