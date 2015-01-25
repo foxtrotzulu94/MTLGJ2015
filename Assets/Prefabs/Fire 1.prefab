@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11480900}
   - 212: {fileID: 21280900}
   - 58: {fileID: 5811674}
+  - 95: {fileID: 9558922}
   m_Layer: 0
   m_Name: Fire 1
   m_TagString: Untagged
@@ -41,6 +42,21 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_Radius: .129999995
   m_Center: {x: 0, y: 0}
+--- !u!95 &9558922
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180900}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5df702815e5b9364990aa8d353b3cf25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11480900
 MonoBehaviour:
   m_ObjectHideFlags: 1

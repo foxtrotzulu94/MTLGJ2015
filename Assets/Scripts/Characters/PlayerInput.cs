@@ -158,6 +158,7 @@ public class PlayerInput : MonoBehaviour {
 		nextScale.x *= -1f;
 		transform.localScale = nextScale;
 	}
+	
 
 	float Orient(float i) {
 		return facingRight ? -i : i;

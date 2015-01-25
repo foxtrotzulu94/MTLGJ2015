@@ -3,15 +3,17 @@ using System.Collections;
 
 public class fire : MonoBehaviour {
 	public const int MAX_FIRE = 50;
-	static int totalFire = 0;
+	//static int totalFire = 0;
 	//public GameObject fireObject;
 	Vector3 initialFirePositionRight;
+	GameObject score;
 
     Flammable m_FlammableParent;
 
 	// Use this for initialization
 	void Start () {
 		initialFirePositionRight = transform.position;
+		score = GameObject.FindGameObjectWithTag("Score");
 	}
 
     public void Initialize(Flammable flammableParent)
@@ -25,7 +27,8 @@ public class fire : MonoBehaviour {
 		}
 		if (collider.gameObject.tag == "Water")
 		{
-	        Destroy(gameObject);
+			score.SendMessage("Increment", 1);
+			Destroy(gameObject);
 	    }
 	}
 }

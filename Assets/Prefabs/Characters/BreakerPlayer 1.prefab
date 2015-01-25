@@ -12,7 +12,7 @@ GameObject:
   - 61: {fileID: 6176278}
   - 50: {fileID: 5076278}
   - 212: {fileID: 21276278}
-  - 95: {fileID: 9576278}
+  - 95: {fileID: 9531094}
   m_Layer: 0
   m_Name: BreakerPlayer 1
   m_TagString: Player
@@ -58,6 +58,21 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .409999996, y: .289999992}
   m_Center: {x: 0, y: 0}
+--- !u!95 &9531094
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176278}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a02634a5e08c8f4438900d6f0f599d9e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &9576278
 Animator:
   serializedVersion: 3
@@ -81,11 +96,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 176278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5f26c0e6c9773c449b26e5f0803bc4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 908d89f2e462f2c43945b4beaf30a47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 2
-  Water: {fileID: 189494, guid: 02db740ad165e5d4190e02973e771e2c, type: 2}
+  isFocus: 0
+  Type: 3
+  Water: {fileID: 0}
   DestroyCharge: 3
 --- !u!212 &21276278
 SpriteRenderer:

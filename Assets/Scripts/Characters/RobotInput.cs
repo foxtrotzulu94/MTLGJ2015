@@ -8,7 +8,8 @@ public class RobotInput : MonoBehaviour {
     public bool isFocus;
     public bool isAlive { get { return alive; } }
     public RobotType Type;
-
+	Animator animator;
+	bool facingRight = true;
     //Water player stuff
     public GameObject Water;
 
@@ -30,6 +31,7 @@ public class RobotInput : MonoBehaviour {
     {
         mouseLocation = gameObject.transform.position;
         ourBounds = GetComponent<BoxCollider2D>();
+		animator = GetComponent<Animator> ();
         alive = true;
     }
  
@@ -58,6 +60,27 @@ public class RobotInput : MonoBehaviour {
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, mouseLocation,
                 2.0f*TimeManager.GetTime(TimeType.Gameplay));
+
+			float dirX = Mathf.Abs(mouseLocation.x - transform.position.x);
+			float dirY = Mathf.Abs(mouseLocation.y - transform.position.y);
+			if (dirX > dirY) {
+				if ((mouseLocation.x - transform.position.x) > 0)
+					animator.SetInteger ("transition", 0);
+				else
+					animator.SetInteger ("transition", 1);
+				if ((mouseLocation.x - transform.position.x) < 0 && facingRight) {
+					Flip();
+				}
+				if ((mouseLocation.x - transform.position.x) > 0 && !facingRight) {
+					Flip();
+				}
+			}
+			else {
+				if ((mouseLocation.y - transform.position.y) > 0)
+					animator.SetInteger ("transition", 2);
+				else
+					animator.SetInteger ("transition", 3);
+			}
         }
     }
 
@@ -124,4 +147,20 @@ public class RobotInput : MonoBehaviour {
         renderer.enabled = true;
         alive = true;
     }
+
+	void Flip()
+	{
+		facingRight = !facingRight;
+		Vector3 nextScale = transform.localScale;
+		nextScale.x *= -1f;
+		transform.localScale = nextScale;
+	}
+	
+	float Orient(float i) {
+		return facingRight ? -i : i;
+	}
+
+	void calculateWallScore() {
+		
+	}
 }

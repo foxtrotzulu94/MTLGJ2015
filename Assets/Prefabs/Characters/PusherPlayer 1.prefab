@@ -11,8 +11,8 @@ GameObject:
   - 114: {fileID: 11447796}
   - 61: {fileID: 6147796}
   - 50: {fileID: 5047796}
-  - 95: {fileID: 9547796}
   - 212: {fileID: 21247796}
+  - 95: {fileID: 9562278}
   m_Layer: 0
   m_Name: PusherPlayer 1
   m_TagString: Player
@@ -58,7 +58,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .409999996, y: .289999992}
   m_Center: {x: 0, y: 0}
---- !u!95 &9547796
+--- !u!95 &9562278
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -67,7 +67,7 @@ Animator:
   m_GameObject: {fileID: 147796}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 789a64279a35c9f4380e323af32bd65b, type: 2}
+  m_Controller: {fileID: 9100000, guid: d38cd3677d87d0c4dac9f724e26d3c98, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -81,10 +81,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 147796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5f26c0e6c9773c449b26e5f0803bc4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 908d89f2e462f2c43945b4beaf30a47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  isFocus: 0
+  Type: 2
   Water: {fileID: 189494, guid: 02db740ad165e5d4190e02973e771e2c, type: 2}
   DestroyCharge: 3
 --- !u!212 &21247796

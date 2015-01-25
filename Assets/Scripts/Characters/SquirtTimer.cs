@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SquirtTimer : MonoBehaviour {
 
-    public float lifeTime = 1f;
+    public float lifeTime = 0.5f;
 
     // Use this for initialization
     void Start()
