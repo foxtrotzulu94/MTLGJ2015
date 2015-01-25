@@ -153,8 +153,9 @@ public class Flammable : MonoBehaviour
 
     public void OnDrawGizmos()
     {
+#if UNITY_EDITOR
 		Handles.Label(transform.position + Vector3.left * 0.5f, String.Format("{0:0.##}", FlameResistance));
-
+#endif
 		if (m_State == FlammableState.OnFire || m_State == FlammableState.SuperOnFire)
         {
             m_Tile.GizmosDrawWalls(0.5f, false, Color.red);
