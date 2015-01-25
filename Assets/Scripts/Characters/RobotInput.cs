@@ -70,6 +70,7 @@ public class RobotInput : MonoBehaviour {
             projectileGameObject.rigidbody2D.AddForce(
                 (new Vector2(mouseLocation2.x - transform.position.x, mouseLocation2.y - transform.position.y)).normalized,
                 ForceMode2D.Impulse);
+            projectileGameObject.AddComponent("SquirtTimer");
         }
     }
 
