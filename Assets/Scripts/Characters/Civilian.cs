@@ -199,4 +199,16 @@ public class Civilian : MonoBehaviour
 			Gizmos.DrawWireSphere(tilesInRange[i].transform.position, 0.5f);
         }
     }
+
+    public void OnCollisionEnter2D(Collision2D someObject)
+    {
+        Debug.Log("Civilian Entered Collision");
+        RobotInput aRobot = someObject.collider.GetComponentInParent<RobotInput>();
+        if (aRobot != null)
+        {
+            //Save the Civi:
+                //Make them disappear, add to the score, Mark for Destroy
+            this.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
 }

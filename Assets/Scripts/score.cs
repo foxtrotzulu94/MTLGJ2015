@@ -4,6 +4,7 @@ using System.Collections;
 public class score : MonoBehaviour {
 
 	int totalScore;
+    public int WallMultiplier;
 	public TextMesh text;
 
 	// Use this for initialization
@@ -19,4 +20,10 @@ public class score : MonoBehaviour {
 	void Increment(int i) {
 		totalScore += i;
 	}
+
+    public void CountRemainingWalls()
+    {
+        int remainingWalls = GameObject.FindObjectsOfType<Flammable>().Length;
+        Increment(WallMultiplier * remainingWalls);
+    }
 }
