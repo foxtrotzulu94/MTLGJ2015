@@ -1,0 +1,80 @@
+fileFormatVersion: 2
+guid: d5f07f82be857f5428fa49aa08b379f0
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: BlueBot_TurnaroundSheet_0
+    21300002: BlueBot_TurnaroundSheet_1
+    21300004: BlueBot_TurnaroundSheet_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 512
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: BlueBot_TurnaroundSheet_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 43
+        width: 507
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BlueBot_TurnaroundSheet_1
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 17
+        width: 287
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BlueBot_TurnaroundSheet_2
+      rect:
+        serializedVersion: 2
+        x: 891
+        y: 29
+        width: 508
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

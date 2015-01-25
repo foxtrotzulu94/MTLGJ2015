@@ -8,6 +8,8 @@ public class PlayerInput : MonoBehaviour {
     Collider2D ourBounds;
     private bool alive;
     public RobotType Type;
+	Animator animator;
+	bool facingRight = true;
 
     //Water player stuff
     public GameObject Water;
@@ -27,13 +29,14 @@ public class PlayerInput : MonoBehaviour {
     {
         mouseLocation = gameObject.transform.position;
         ourBounds = GetComponent<BoxCollider2D>();
+		animator = GetComponent<Animator> ();
         alive = true;
     }
  
  // Update is called once per frame
     void Update () 
     {
-        LookAtMouse();
+        //LookAtMouse();
 
         LeftClickAction();
 
@@ -52,6 +55,37 @@ public class PlayerInput : MonoBehaviour {
         {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, mouseLocation,
                 2.0f*TimeManager.GetTime(TimeType.Gameplay));
+			//animator.SetFloat ("moveSpeedX", mouseLocation.x - transform.position.x);
+//			if ((mouseLocation.x - transform.position.x) < 0 && facingRight) {
+//				Flip();
+//			}
+//			if ((mouseLocation.x - transform.position.x) > 0 && !facingRight) {
+//				Flip();
+//			}
+			//animator.SetFloat ("moveSpeedY", mouseLocation.y - transform.position.y);
+			float dirX = Mathf.Abs(mouseLocation.x - transform.position.x);
+			float dirY = Mathf.Abs(mouseLocation.y - transform.position.y);
+			if (dirX > dirY) {
+				if ((mouseLocation.x - transform.position.x) > 0)
+					animator.SetInteger ("transition", 0);
+				else
+					animator.SetInteger ("transition", 1);
+				if ((mouseLocation.x - transform.position.x) < 0 && facingRight) {
+					Flip();
+				}
+				if ((mouseLocation.x - transform.position.x) > 0 && !facingRight) {
+					Flip();
+				}
+			}
+			else {
+				if ((mouseLocation.y - transform.position.y) > 0)
+					animator.SetInteger ("transition", 2);
+				else
+					animator.SetInteger ("transition", 3);
+			}
+
+
+
         }
     }
 
@@ -77,7 +111,7 @@ public class PlayerInput : MonoBehaviour {
         float AngleRad = Mathf.Atan2(mouseLocation.y - transform.position.y, mouseLocation.x - transform.position.x);
         // Get Angle in Degrees
         float AngleDeg = (180/Mathf.PI)*AngleRad;
-        // Rotate Object
+		// Rotate Object
         transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
     }
 
@@ -117,4 +151,16 @@ public class PlayerInput : MonoBehaviour {
         renderer.enabled = true;
         alive = true;
     }
+
+	void Flip()
+	{
+		facingRight = !facingRight;
+		Vector3 nextScale = transform.localScale;
+		nextScale.x *= -1f;
+		transform.localScale = nextScale;
+	}
+
+	float Orient(float i) {
+		return facingRight ? -i : i;
+	}
 }
