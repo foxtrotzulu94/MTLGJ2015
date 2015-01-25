@@ -5,9 +5,11 @@ public class LevelGenerator : MonoBehaviour {
 
     public GameObject FloorPrefab;
     public GameObject WallPreFab;
+    public GameObject Player0;
     public GameObject[] Decorations;
 
     public int SmallestRoomSize;
+    public int DoorOpening;
 
     private GameObject[] CornerTiles;
 
@@ -117,7 +119,7 @@ public class LevelGenerator : MonoBehaviour {
 
         //Before we begin, evaluate certain decisions ahead of time.
         //1. Do we want to really, really split this room?
-        if(currentLevel >= maxLevels*(2/3) && Mathf.Min(xLength,yLength) < SmallestRoomSize*2)
+        if(currentLevel >= 0 && currentLevel >= maxLevels*(2/3) && Mathf.Min(xLength,yLength) < SmallestRoomSize*2)
         {
             if (Random.Range(0, 100) > 90) //10% Chance that this Room will not be split.
             {
@@ -158,14 +160,25 @@ public class LevelGenerator : MonoBehaviour {
             //We keep x1 the same, x2 will change, however
             //newMiddle = (int)((x2-x1) * (Random.Range(0.3,0.8));
             newMiddle = Mathf.FloorToInt((x2 - x1) / 2);
+			newMiddle += Mathf.FloorToInt(Random.Range(-newMiddle/2,newMiddle/2));
             int midPoint = x2 - newMiddle;
             //newMiddle = (int)(Random.Range(MinMapTiles*2, x2 - (MinMapTiles*2)));
             BinarySpacePartition(basePosition, x1, y1, midPoint, y2, maxLevels, currentLevel + 1);
             BinarySpacePartition(basePosition, midPoint, y1, x2, y2, maxLevels, currentLevel + 1);
             GameObject unitWall;
+
+            //Choose a point to make the Door Opening
+            int doorIndex = Random.Range(0, yLength - DoorOpening);
+
             //Build ALL of the Walls as you return from callstack
             for (int i = 0; i < yLength; i++)
             {
+                if (i == doorIndex)
+                {
+                    i += DoorOpening - 1;
+                    continue;
+                }
+
                 TileCoord coord = new TileCoord(midPoint, y2 - i - 1);
                 unitWall = (GameObject)GameObject.Instantiate(WallPreFab, new Vector3(coord.X - 0.5f, coord.Y) + basePosition
                     , Quaternion.identity);
@@ -183,15 +196,25 @@ public class LevelGenerator : MonoBehaviour {
             //Debug.log("Y-Axis halve");
             //newMiddle = (int)(y2 / ((Random.value % 2) + 1));
             newMiddle = (y2 - y1) / 2;
+			newMiddle += Mathf.FloorToInt(Random.Range(-newMiddle / 2, newMiddle / 2));
             int midPoint = y2 - newMiddle;
             //newMiddle = (int)(Random.Range(MinMapTiles*2, y2 - (MinMapTiles*2)));
             BinarySpacePartition(basePosition, x1, y1, x2, midPoint, maxLevels, currentLevel + 1);
             BinarySpacePartition(basePosition, x1, midPoint, x2, y2, maxLevels, currentLevel + 1);
             GameObject unitWall;
+
+            //Choose a point to make the Door Opening
+            int doorIndex = Random.Range(0, yLength - DoorOpening);
+
             //Build ALL of the Walls as you return from callstack
-            //TODO: Have a random point for peek hole
             for (int i = 0; i < xLength; i++)
             {
+                if (i == doorIndex)
+                {
+                    i += DoorOpening-1;
+                    continue;
+                }
+
                 TileCoord coord = new TileCoord(x2 - i - 1, midPoint);
 
                 unitWall = (GameObject)GameObject.Instantiate(WallPreFab, new Vector3(coord.X, coord.Y - 0.5f) + basePosition

@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11493066}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -41,7 +42,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Width: 10
   Height: 10
-  TilePrefab: {fileID: 100000, guid: 872938f572d871b49bd263f53f1ccf2d, type: 2}
+--- !u!114 &11493066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0420472df7b2bc34584433f49cdbbe13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloorPrefab: {fileID: 164324, guid: ea31d96490fa9db409a7bd108d37d582, type: 2}
+  WallPreFab: {fileID: 147488, guid: 3690038229575e64f87397b3f30ed4d9, type: 2}
+  Player0: {fileID: 170126, guid: 238aaaa5772d0eb4a8236826c481ebab, type: 2}
+  Decorations: []
+  SmallestRoomSize: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
