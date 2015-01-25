@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82569640e60adf247859241952bd2ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 0
+  Enabled: 1
   FadingRatio: 2
 --- !u!114 &11400002
 MonoBehaviour:
@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WallMultiplier: 0
+  CivilianMultiplier: 5
   text: {fileID: 10200000}
 --- !u!114 &11400004
 MonoBehaviour:

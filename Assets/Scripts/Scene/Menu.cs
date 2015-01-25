@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour {
     void Start()
     {
         Camera.main.backgroundColor = Color.white;
+        PlayerContainer.Instance.InitialSpawning = true;
     }
 	
 	// Update is called once per frame

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class FireSpawner : ISpawner
 {
-    public int MinFireSpot = 2;
-    public int MaxFireSpot = 7;
+    //public int MinFireSpot = 2;
+    //public int MaxFireSpot = 7;
     public int MinFlamePerSpot = 3;
     public int MaxFlamePerSpot = 8;
 
@@ -46,7 +46,7 @@ public class FireSpawner : ISpawner
                 }
             }
 
-            int numberOfFireSpot = Random.Range(MinFireSpot, MaxFireSpot + 1);
+            int numberOfFireSpot = Mathf.Max(1, (PlayerContainer.Instance.level+1) / 2);// Random.Range(MinFireSpot, MaxFireSpot + 1);
             for (int i = 0; i < numberOfFireSpot && possibilities.Count > 0; ++i)
             {
                 int randomIndex = Random.Range(0, possibilities.Count);

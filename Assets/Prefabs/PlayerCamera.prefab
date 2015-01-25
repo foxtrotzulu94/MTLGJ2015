@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82569640e60adf247859241952bd2ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 0
+  Enabled: 1
   FadingRatio: .100000001
 --- !u!124 &12400000
 Behaviour:

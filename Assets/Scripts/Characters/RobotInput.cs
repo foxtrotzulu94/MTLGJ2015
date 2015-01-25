@@ -115,6 +115,7 @@ public class RobotInput : MonoBehaviour
 
     public void ShowSelector()
     {
+		if(alive)
         m_SelectedObject.SetActive(true);
     }
 
@@ -208,6 +209,16 @@ public class RobotInput : MonoBehaviour
 	    alive = false;
         Main.RegisterKilledRobot(this);
         HideSelector();
+
+		foreach (GameObject go in PlayerContainer.Instance.PlayerObjects)
+		{
+			RobotInput input = go.GetComponent<RobotInput>();
+			if(input.Type == Type)
+			{
+				PlayerContainer.Instance.PlayerObjects.Remove(go);
+				break;
+			}
+		}
         //Respawn();
 	}
 
@@ -244,10 +255,16 @@ public class RobotInput : MonoBehaviour
         inLevel = false;
         Main.RegisterSafeRobot(this);
 		HideSelector();
+        alive = false;
     }
 
     public void AddRescuedCivilian(Civilian aCivilian)
     {
         civiliansRescued++;
+    }
+
+    public void OnMouseDown()
+    {
+        Debug.Log("Click!");
     }
 }

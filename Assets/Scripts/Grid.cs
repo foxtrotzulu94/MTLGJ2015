@@ -31,6 +31,8 @@ public class Grid : MonoBehaviour
 
     public void Start()
     {
+        PlayerContainer.Instance.level++;
+
         Width = Random.Range(Width, MaxWidth);
         Height = Random.Range(Height, MaxHeight);
 

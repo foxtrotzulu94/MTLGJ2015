@@ -58,7 +58,7 @@ public class TimeManager : MonoBehaviour
             m_SpecialActionTimer = 3.0f;
 		}
 
-		if(Input.GetKeyUp(KeyCode.Space))
+		if(false && Input.GetKeyUp(KeyCode.Space))
 		{
             if (TimeManager.GetTimeDilatation(TimeType.Gameplay) <= 0.0f)
             {

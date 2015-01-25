@@ -73,13 +73,17 @@ public class PlayerMovement : MonoBehaviour {
         {
             inputNumber = 0;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+		else if (Input.GetKeyDown(KeyCode.Alpha2) && RobotArray.Length > 1)
         {
             inputNumber = 1;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+		else if (Input.GetKeyDown(KeyCode.Alpha3) && RobotArray.Length > 2)
         {
             inputNumber = 2;
+        }
+		else if (Input.GetKeyDown(KeyCode.Alpha4) && RobotArray.Length > 3)
+        {
+            inputNumber = 3;
         }
 
         if (inputNumber == previousInput)

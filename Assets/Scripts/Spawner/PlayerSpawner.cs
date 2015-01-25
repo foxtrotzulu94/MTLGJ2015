@@ -13,6 +13,18 @@ public class PlayerSpawner : ISpawner
 
         List<TileCoord> possibilities = new List<TileCoord>();
 
+        List<GameObject> playerList = new List<GameObject>(PlayerObjects);
+
+        if (PlayerContainer.Instance.InitialSpawning)
+        {
+            PlayerContainer.Instance.InitialSpawning = false;
+            PlayerContainer.Instance.PlayerObjects = new List<GameObject>(PlayerObjects);
+        }
+        else
+        {
+            playerList = new List<GameObject>(PlayerContainer.Instance.PlayerObjects);
+        }
+
         for (int i = 0; i < grid.Width; ++i)
         {
             possibilities.Add(new TileCoord(i, 0));
@@ -30,11 +42,11 @@ public class PlayerSpawner : ISpawner
         {
             int randomIndex = Random.Range(0, possibilities.Count);
             List<Tile> validTiles = new List<Tile>();
-            if (ValidateTile(grid, grid.GetTile(possibilities[randomIndex]), ref validTiles))
+            if (ValidateTile(grid, grid.GetTile(possibilities[randomIndex]), ref validTiles, playerList.Count))
             {
                 for (int i = 0; i < validTiles.Count; ++i)
                 {
-                    GameObject go = (GameObject)GameObject.Instantiate(PlayerObjects[i], validTiles[i].transform.position, PlayerObjects[i].transform.rotation);
+                    GameObject go = (GameObject)GameObject.Instantiate(playerList[i], validTiles[i].transform.position, PlayerObjects[i].transform.rotation);
                     grid.m_Players.Add(go);
                 }
                 foundSolution = true;
@@ -47,15 +59,15 @@ public class PlayerSpawner : ISpawner
         Debug.Log("Spawned Players...");
     }
 
-    private bool ValidateTile(Grid grid, Tile tile, ref List<Tile> validTiles)
+    private bool ValidateTile(Grid grid, Tile tile, ref List<Tile> validTiles, int number)
     {
-        validTiles = grid.GetNConnectedTileInRange(tile, 1, PlayerObjects.Length);
+        validTiles = grid.GetNConnectedTileInRange(tile, 1, number);
 
-        if (validTiles.Count != PlayerObjects.Length)
+        if (validTiles.Count != number)
         {
             validTiles.Clear();
         }
 
-        return validTiles.Count == PlayerObjects.Length;
+        return validTiles.Count == number;
     }
 }
