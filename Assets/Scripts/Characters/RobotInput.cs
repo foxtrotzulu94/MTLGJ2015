@@ -4,7 +4,7 @@ using System.Collections;
 
 public class RobotInput : MonoBehaviour
 {
-    Vector2 mouseLocation;
+    Vector2 m_MouseLocation;
     Collider2D ourBounds;
     public bool isFocus;
     public bool isAlive { get { return alive; } }
@@ -36,7 +36,7 @@ public class RobotInput : MonoBehaviour
     void Start () 
     {
         Main = Camera.main.GetComponent<PlayerMovement>();
-        mouseLocation = gameObject.transform.position;
+        m_MouseLocation = gameObject.transform.position;
         ourBounds = GetComponent<BoxCollider2D>();
 		animator = GetComponent<Animator> ();
         inLevel = true;
@@ -46,19 +46,61 @@ public class RobotInput : MonoBehaviour
         m_SelectedObject.SetActive(false);
         m_SelectedObject.transform.parent = transform;
     }
- 
+
+    private void UpdateMovement()
+    {
+        float distanceToGoal = (m_MouseLocation - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)).magnitude;
+
+        if (distanceToGoal > 0.01f && alive)
+        {
+            //HideSelector();
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, m_MouseLocation,
+                2.0f * TimeManager.GetTime(TimeType.Gameplay));
+
+            float dirX = Mathf.Abs(m_MouseLocation.x - transform.position.x);
+            float dirY = Mathf.Abs(m_MouseLocation.y - transform.position.y);
+            if (dirX > dirY)
+            {
+                if ((m_MouseLocation.x - transform.position.x) > 0)
+                    animator.SetInteger("transition", 0);
+                else
+                    animator.SetInteger("transition", 1);
+                if ((m_MouseLocation.x - transform.position.x) < 0 && facingRight)
+                {
+                    Flip();
+                }
+                if ((m_MouseLocation.x - transform.position.x) > 0 && !facingRight)
+                {
+                    Flip();
+                }
+            }
+            else
+            {
+                if ((m_MouseLocation.y - transform.position.y) > 0)
+                    animator.SetInteger("transition", 2);
+                else
+                    animator.SetInteger("transition", 3);
+            }
+        }
+    }
+
  // Update is called once per frame
     float m_SelectionTime = 0.0f;
     void Update () 
     {
         Cooldown -= TimeManager.GetTime(TimeType.Gameplay);
-        if (isFocus && inLevel && alive)
+        if (inLevel && alive)
         {
-            //LookAtMouse();
+            if (isFocus)
+            {
+                //LookAtMouse();
 
-            LeftClickAction();
+                LeftClickAction();
 
-            RightClickAction();
+                RightClickAction();
+            }
+
+            UpdateMovement();
         }
 
         m_SelectionTime += TimeManager.GetTime(TimeType.Engine) * 5.0f;
@@ -86,38 +128,7 @@ public class RobotInput : MonoBehaviour
         //Left Click - Movement
         if (Input.GetMouseButtonUp(0))
         {
-            mouseLocation = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-        }
-
-        float distanceToGoal = (mouseLocation - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)).magnitude;
-
-        if (distanceToGoal > 0.01f && alive)
-        {
-            HideSelector();
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, mouseLocation,
-                2.0f*TimeManager.GetTime(TimeType.Gameplay));
-
-			float dirX = Mathf.Abs(mouseLocation.x - transform.position.x);
-			float dirY = Mathf.Abs(mouseLocation.y - transform.position.y);
-			if (dirX > dirY)
-			{
-				if ((mouseLocation.x - transform.position.x) > 0)
-					animator.SetInteger ("transition", 0);
-				else
-					animator.SetInteger ("transition", 1);
-				if ((mouseLocation.x - transform.position.x) < 0 && facingRight) {
-					Flip();
-				}
-				if ((mouseLocation.x - transform.position.x) > 0 && !facingRight) {
-					Flip();
-				}
-			}
-			else {
-				if ((mouseLocation.y - transform.position.y) > 0)
-					animator.SetInteger ("transition", 2);
-				else
-					animator.SetInteger ("transition", 3);
-			}
+            m_MouseLocation = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
         }
     }
 
@@ -196,6 +207,7 @@ public class RobotInput : MonoBehaviour
 		renderer.enabled = false;
 	    alive = false;
         Main.RegisterKilledRobot(this);
+        HideSelector();
         //Respawn();
 	}
 
@@ -206,7 +218,7 @@ public class RobotInput : MonoBehaviour
 
     void Revived()
     {
-        mouseLocation = transform.position;
+        m_MouseLocation = transform.position;
         renderer.enabled = true;
         alive = true;
     }
@@ -231,6 +243,7 @@ public class RobotInput : MonoBehaviour
         this.GetComponent<SpriteRenderer>().enabled=false;
         inLevel = false;
         Main.RegisterSafeRobot(this);
+		HideSelector();
     }
 
     public void AddRescuedCivilian(Civilian aCivilian)

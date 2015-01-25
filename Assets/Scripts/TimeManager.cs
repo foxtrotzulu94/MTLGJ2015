@@ -53,7 +53,7 @@ public class TimeManager : MonoBehaviour
         m_SpecialActionTimer -= TimeManager.GetTime(TimeType.Gameplay);
 		if(m_SpecialActionTimer <= 0.0f)
 		{
-			BroadcastMessage("SpecialActionRegistrationEvent");
+			Grid.Instance.BroadcastMessage("SpecialActionRegistrationEvent");
             SpecialEventManager.Instance.ExecuteSpecialAction(1);
             m_SpecialActionTimer = 3.0f;
 		}
