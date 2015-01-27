@@ -15,6 +15,7 @@ public class score : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+        text.transform.position = new Vector3(-Camera.main.aspect * Camera.main.orthographicSize + 1.0f, Camera.main.orthographicSize - 1.0f, text.transform.position.z);
 		text.text = "Score: " + PlayerContainer.Instance.score;
 
 	}

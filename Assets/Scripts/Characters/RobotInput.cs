@@ -204,10 +204,11 @@ public class RobotInput : MonoBehaviour
 
 	void Kill()
 	{
-		transform.position = new Vector3 (2.644737f, -0.9473684f, 0);	//spawn zone
+		transform.position = Vector3.right*10000;	//spawn zone
 		renderer.enabled = false;
 	    alive = false;
         Main.RegisterKilledRobot(this);
+        this.collider2D.enabled = false;
         HideSelector();
 
 		foreach (GameObject go in PlayerContainer.Instance.PlayerObjects)

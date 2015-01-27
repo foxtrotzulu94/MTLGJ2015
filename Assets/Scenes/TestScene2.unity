@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 2043686432}
   m_GameObject: {fileID: 505254510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.8500004, y: 5.57999992, z: 8}
+  m_LocalPosition: {x: -15, y: 7, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1285325613}
@@ -114,12 +114,12 @@ TextMesh:
   m_GameObject: {fileID: 505254510}
   m_Text: 'Score: 0'
   m_OffsetZ: 0
-  m_CharacterSize: 1
+  m_CharacterSize: .300000012
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 1
-  m_FontSize: 10
+  m_FontSize: 30
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 60806232d90afcc499e4b1fe8592bc1c, type: 3}
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea26a6003ab66a42901fedc3c46b8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WallMultiplier: 1
+  WallMultiplier: 0
   CivilianMultiplier: 5
   text: {fileID: 505254512}
 --- !u!1 &1004171194
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Width: 10
   Height: 10
-  MaxWidth: 10
+  MaxWidth: 20
   MaxHeight: 10
   m_Players: []
   m_Civilian: []
@@ -302,8 +302,8 @@ Transform:
   m_PrefabInternal: {fileID: 2043686432}
   m_GameObject: {fileID: 1063556977}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 0, z: .349999994}
-  m_LocalScale: {x: 1.92937493, y: 1, z: 1.39999998}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
+  m_LocalScale: {x: 2.69962263, y: 1, z: 1.39999998}
   m_Children: []
   m_Father: {fileID: 1285325613}
   m_RootOrder: 1
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82569640e60adf247859241952bd2ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 0
+  Enabled: 1
   FadingRatio: 2
 --- !u!23 &1063556980
 Renderer:
@@ -454,8 +454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1977df0e3b701a4c9b4fb1556c56800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraSpeed: 20
-  CameraAcceleration: 50
+  CameraSpeed: 0
+  CameraAcceleration: 0
 --- !u!114 &1285325615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,6 +559,34 @@ Prefab:
       propertyPath: FadingRatio
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: c12d59d83a179d8448bbba52c19fa021, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.69962263
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c12d59d83a179d8448bbba52c19fa021, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c12d59d83a179d8448bbba52c19fa021, type: 2}
+      propertyPath: CameraSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c12d59d83a179d8448bbba52c19fa021, type: 2}
+      propertyPath: CameraAcceleration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: c12d59d83a179d8448bbba52c19fa021, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 10200000, guid: c12d59d83a179d8448bbba52c19fa021, type: 2}
+      propertyPath: m_CharacterSize
+      value: .300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 10200000, guid: c12d59d83a179d8448bbba52c19fa021, type: 2}
+      propertyPath: m_FontSize
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c12d59d83a179d8448bbba52c19fa021, type: 2}
   m_RootGameObject: {fileID: 1285325608}
@@ -614,7 +642,7 @@ Prefab:
         type: 2}
     - target: {fileID: 11400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
       propertyPath: MaxWidth
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: b496b618e2a1bfb478c1f9fcca86f86f, type: 2}
       propertyPath: MaxHeight

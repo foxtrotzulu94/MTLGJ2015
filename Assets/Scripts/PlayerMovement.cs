@@ -35,7 +35,11 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            //Do a Full Quit and Reset
             Application.LoadLevel("Menu");
+            PlayerContainer.Instance.InitialSpawning = true;
+            PlayerContainer.Instance.score = 0;
+            PlayerContainer.Instance.level = 0;
         }
 
         //Check if the EndCondition has been met
